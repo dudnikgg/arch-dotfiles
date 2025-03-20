@@ -1,27 +1,22 @@
-# Created by newuser for 5.9
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-# Download Zinit, if it's not there yet
-if [ ! -d "$ZINIT_HOME" ]; then
-  mkdir -p "$(dirname $ZINIT_HOME)"
-  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Source/Load zinit
-source "${ZINIT_HOME}/zinit.zsh"
+# Load the "init.sh".
+source ~/zsh-configs/init.sh
 
-# Add in Powerlevel10k
-# zinit ice depth=1; zinit light romkatv/powerlevel10k
+# Find all .sh files, exclude "init.sh"
+FILES_DIR=$(fd --glob '*.sh' --exclude 'init.sh' ~/zsh-configs)
 
-# Keybinds
+# "tr" is a find-and-replace utility.
+# Outer () will convert the output of $() to array.
+FILES=($(echo $FILES_DIR | tr '\n' ' '))
+for FILE in $FILES; do
+  source $FILE
+done
 
-bindkey ";3D" backward-word     # alt←
-bindkey ";3C" forward-word      # alt→
-bindkey ";9D" beginning-of-line # alt+←
-bindkey ";9C" end-of-line       # alt+→
-bindkey "^[w" backward-delete-word # alt+w
-bindkey "^[u" undo # alt+u
-bindkey "^[r" redo # alt+r
-bindkey "^[a" beginning-of-line # alt+a
-bindkey "^[e" end-of-line # alt+e
-
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
