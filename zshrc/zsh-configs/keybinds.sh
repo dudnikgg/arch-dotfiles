@@ -10,5 +10,5 @@ bindkey "^[u" undo # alt+u
 bindkey "^[r" redo # alt+r
 bindkey "^[a" beginning-of-line # alt+a
 bindkey "^[e" end-of-line # alt+e
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+bindkey "^[[A" history-beginning-search-backward # 
+bindkey "^[[B" history-beginning-search-forward # 
