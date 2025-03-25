@@ -60,7 +60,7 @@
   },
   "network": {
     "format-wifi": " ",
-    "format-disconnected": "󱚼",
+    "format-disconnected": "󱚼 ",
     "tooltip-format-wifi": "SSID: {essid}\nStrenght: {signalStrength}%"
   },
   "pulseaudio": {
