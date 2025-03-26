@@ -8,7 +8,8 @@
   "spacing": 0,
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/window"
+    //"hyprland/window",
+    "tray"
   ],
   "modules-center": [
     "disk",
@@ -23,7 +24,29 @@
     "hyprland/language",
     "pulseaudio",
     "clock",
+    "custom/notification"
   ],
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10,
+    "show-passive-items": true
+  },
+  "custom/notification": {
+      "tooltip": false,
+      "format": " {icon} ",
+      "format-icons": {
+          "notification": "",
+          "none": "",
+          "dnd-notification": "",
+          "dnd-none": ""
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape": true
+  },
   "hyprland/language": {
       "format": " | {} | ",
       "format-en": "eng",
@@ -37,31 +60,14 @@
   },
   "clock": {
     "format": "{:%R} ",
-
-    "tooltip-format": "<tt>{calendar}</tt>",
-    "calendar": {
-        "mode": "month",
-        "mode-mon-col": 3,
-        "on-scroll": 1,
-        "on-click-right": "mode",
-        "format": {
-            "months": "<span color='#90908F'><b>{}</b></span>",
-            "weekdays": "<span color='#9FA0A0'><b>{}</b></span>",
-            "today": "<span color='#90908F'><b>{}</b></span>"
-        }
-    },
-    "actions": {
-        "on-click-right": "mode",
-        "on-click-forward": "tz_up",
-        "on-click-backward": "tz_down",
-        "on-scroll-up": "shift_up",
-        "on-scroll-down": "shift_down"
-    }
+    "tooltip": true,
+    "on-click": "gnome-calendar"
   },
   "network": {
     "format-wifi": " ",
     "format-disconnected": "󱚼 ",
-    "tooltip-format-wifi": "SSID: {essid}\nStrenght: {signalStrength}%"
+    "tooltip-format-wifi": "SSID: {essid}\nStrenght: {signalStrength}%",
+    "on-click": "iwgtk"
   },
   "pulseaudio": {
     "format": "{icon} {volume}% ",
