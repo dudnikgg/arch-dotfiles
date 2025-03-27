@@ -1,5 +1,5 @@
 # aliases
-alias cdd="cd ~/dev/"
+alias cdd="cd ~/dd-dev/"
 alias p=pnpm
 alias g=git
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -51,7 +51,7 @@ function cp-remote() {
   rsync --archive -hh --partial --stats --progress --modify-window=1 --exclude=node_modeles "${remote}" "${host}"
 }
 
-# Rsync Move (mvr) - Works with Remote 
+# Rsync Move (mvr) - Works with Remote
 # mvr() {
 #  rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files "$1"
 # }
