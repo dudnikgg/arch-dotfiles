@@ -33,7 +33,7 @@
     // The default font size for text in the UI
     "ui_font_size": 16,
     // How much to fade out unused code.
-    "unnecessary_code_fade": 0.5,
+    "unnecessary_code_fade": 0.3,
     // Active pane styling settings.
     // All settings related to the image viewer.
     "image_viewer": {
@@ -118,7 +118,7 @@
     "lsp_highlight_debounce": 75,
     // Whether to pop the completions menu while typing in an editor without
     // explicitly requesting it.
-    "show_completions_on_input": true,
+    "show_completions_on_input": false,
     // Whether to display inline and alongside documentation for items in the
     // completions menu
     "show_completion_documentation": true,
@@ -190,7 +190,7 @@
     "allow_rewrap": "in_comments",
     // Controls whether edit predictions are shown immediately (true)
     // or manually by triggering `editor::ShowEditPrediction` (false).
-    "show_edit_predictions": true,
+    "show_edit_predictions": false,
     // Controls whether edit predictions are shown in a given language scope.
     // Example: ["string", "comment"]
     "edit_predictions_disabled_in": [],
@@ -561,7 +561,7 @@
             // The provider to use.
             "provider": "zed.dev",
             // The model to use.
-            "model": "claude-3-5-sonnet-latest"
+            "model": "claude-3-7-sonnet-latest"
         },
         // The model to use when applying edits from the assistant.
         "editor_model": {
@@ -1246,11 +1246,45 @@
             }
         },
         "PHP": {
-            "language_servers": ["phpactor", "!intelephense", "..."],
-            "prettier": {
-                "allowed": true,
-                "plugins": ["@prettier/plugin-php"],
-                "parser": "php"
+            "language_servers": ["!intelephense", "phpactor", "..."],
+            "formatter": "language_server",
+            // "prettier": {
+            //     "allowed": true,
+            //     "plugins": ["@prettier/plugin-php"],
+            //     "parser": "php"
+            // },
+            "lsp": {
+                // "intelephense": {
+                //     "settings": {
+                //         "environment": {
+                //             "includePaths": ["/path/to/lib"]
+                //         },
+                //         "stubs": [
+                //             "wordpress",
+                //             "woocommerce",
+                //             "acf-pro",
+                //             "wordpress-globals",
+                //             "wp-cli"
+                //         ],
+                //         "files": {
+                //             "maxSize": 5000000,
+                //             "excluded": ["**/node_modules/**", "**/vendor/**"]
+                //         }
+                //     }
+                // }
+            },
+            "file_types": {
+                "PHP": [
+                    "*.inc",
+                    "*.module",
+                    "*.install",
+                    "*.theme",
+                    "*.profile",
+                    "*.tpl.php",
+                    "*.test",
+                    "*.php",
+                    "*.info"
+                ]
             }
         },
         "Plain Text": {
@@ -1471,7 +1505,20 @@
     //     ]
     //   }
     // ]
-    "ssh_connections": [],
+    "ssh_connections": [
+        {
+            "host": "rpi-server",
+            "username": "dudnikgg",
+            "projects": [
+                {
+                    "paths": ["/home/dudnikgg"]
+                },
+                {
+                    "paths": ["/media/ssd-server"]
+                }
+            ]
+        }
+    ],
 
     // Configures context servers for use in the Assistant.
     "context_servers": {},

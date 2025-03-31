@@ -12,45 +12,51 @@
     "tray"
   ],
   "modules-center": [
-    "disk",
-    "memory",
-    "cpu",
-    "load",
-    "temperature",
-    "mpd"
+    "custom/updates",
+    "group/sensors",
   ],
   "modules-right": [
-    "network",
     "hyprland/language",
     "pulseaudio",
-    "clock",
+    "group/date",
+    "network",
     "custom/notification"
   ],
   "tray": {
-    "icon-size": 21,
+    "icon-size": 12,
     "spacing": 10,
     "show-passive-items": true
   },
+  "custom/updates": {
+    "format": "{} {icon}",
+    "return-type": "json",
+    "format-icons": {
+        "has-updates": " ", //"
+        "updated": ""
+    },
+    "exec-if": "which waybar-module-pacman-updates",
+    "exec": "waybar-module-pacman-updates --interval-seconds 5 --network-interval-seconds 300"
+  },
   "custom/notification": {
-      "tooltip": false,
-      "format": " {icon} ",
-      "format-icons": {
-          "notification": "",
-          "none": "",
-          "dnd-notification": "",
-          "dnd-none": ""
-      },
-      "return-type": "json",
-      "exec-if": "which swaync-client",
-      "exec": "swaync-client -swb",
-      "on-click": "swaync-client -t -sw",
-      "on-click-right": "swaync-client -d -sw",
-      "escape": true
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+        "notification": "󰅸",
+        "none": "󰂜",
+        "dnd-notification": "",
+        "dnd-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
   },
   "hyprland/language": {
-      "format": " | {} | ",
+      "format": "{}",
       "format-en": "eng",
-      "format-uk": "ukr",
+      "format-uk": "ukr"
   },
   "hyprland/window": {
     "format": "",
@@ -58,47 +64,62 @@
     //"max-length": 100,
     "separate-outputs": true
   },
+  "group/date": {
+    "orientation": "inherit",
+    "drawer": {
+        "transition-duration": 500,
+        "children-class": "drawer-child",
+        "transition-left-to-right": false
+    },
+    "modules": ["clock"]
+  },
   "clock": {
-    "format": "{:%R} ",
-    "tooltip": true,
-    "on-click": "gnome-calendar"
+    "timezone": "Europe/Kyiv",
+    "tooltip-format": "{:%A, %d %B}",
+    "format": "{:%R}",
+    //"tooltip": false,
   },
   "network": {
     "format-wifi": " ",
-    "format-disconnected": "󱚼 ",
-    "tooltip-format-wifi": "SSID: {essid}\nStrenght: {signalStrength}%",
+    "format-disconnected": "󱚼",
+    "tooltip-format-wifi": "SSID: {essid}\nStrenght: {signalStrength}%\nSpeed: {bandwidthDownBits}",
     "on-click": "iwgtk"
   },
   "pulseaudio": {
-    "format": "{icon} {volume}% ",
-    "format-muted": "",
+    "format": "{icon} {volume}%",
+    "format-muted": "󰟎 0%",
     "format-icons": {
         "alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.analog-stereo": "",
-        "headset": "",
+        "headset": ""
     },
     "scroll-step": 2,
     "on-click": "pavucontrol",
     "ignored-sinks": ["Easy Effects Sink"]
   },
-  "cpu": {
-    "format": " |  {usage}%",
-    "tooltip": false,
-    "interval": 2,
-  },
-  "load": {
-      "interval": 10,
-      "format": " - {load1}",
-      "max-length": 10
-  },
+  "group/sensors": {
+    "orientation": "inherit",
+    "drawer": {
+        "transition-duration": 500,
+        "children-class": "drawer-child",
+        "transition-left-to-right": false
+        },
+        "modules": ["cpu", "disk", "memory","temperature"]
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "󰍛 {usage}%",
+        "on-click": "",
+        "tooltip": false
+    },
   "memory": {
-    "format": " |  {}%"
+    "format": " {}%"
   },
   "temperature": {
     // "thermal-zone": 2,
     "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input",
     "critical-threshold": 90,
-    "format-critical": "{temperatureC}°C ",
-    "format": " | {temperatureC}°C "
+    "format-critical": " {temperatureC}°C",
+    "format": " {temperatureC}°C"
   },
   "disk": {
     "interval": 30,
@@ -106,37 +127,5 @@
     "unit": "GB",
     "path": "/home"
   },
-  "mpd": {
-      "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
-      "format-disconnected": "Disconnected ",
-      "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-      "interval": 10,
-      "consume-icons": {
-          "on": " " // Icon shows only when "consume" is on
-      },
-      "random-icons": {
-          "off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
-          "on": " "
-      },
-      "repeat-icons": {
-          "on": " "
-      },
-      "single-icons": {
-          "on": "1 "
-      },
-      "state-icons": {
-          "paused": "",
-          "playing": ""
-      },
-      "tooltip-format": "MPD (connected)",
-      "tooltip-format-disconnected": "MPD (disconnected)"
-  },
-  //"systemd-failed-units": {
-    //"hide-on-ok": false, // Do not hide if there is zero failed units.
-    //"format": "✗ {nr_failed}",
-    //"format-ok": "✓",
-    //"system": true, // Monitor failed systemwide units.
-    //"user": false // Ignore failed user units.
-  //}
+  "reload_style_on_change": true,
 }
-

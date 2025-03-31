@@ -3,3 +3,7 @@
 [user]
 	email = dudnik.gg@gmail.com
 	name = Denys Dudnik
+[includeif "gitdir:~/dd-dev/localsites/codix/"]
+  path = ~/gitconfigs/codix.gitconfig
+[includeif "gitdir:~/dd-dev/localsites/innocode/"]
+  path = ~/gitconfigs/innocode.gitconfig

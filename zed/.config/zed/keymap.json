@@ -75,8 +75,8 @@
 
             // + Buffers
             // Switch between buffers
-            "shift-left": "pane::ActivatePreviousItem",
-            "shift-right": "pane::ActivateNextItem",
+            "alt-left": "pane::ActivatePreviousItem",
+            "alt-right": "pane::ActivateNextItem",
             // Close active panel
             // "shift-q": "pane::CloseActiveItem",
             // "ctrl-q": "pane::CloseActiveItem",
@@ -91,8 +91,8 @@
             "space /": "pane::DeploySearch",
             // TODO: Open other files
             // Show project panel with current file
-            // "space e": "pane::RevealInProjectPanel",
-            "space e": "project_panel::ToggleFocus",
+            "space e": "pane::RevealInProjectPanel",
+            // "space e": "project_panel::ToggleFocus",
             "space g b": "git::Blame"
         }
     },
@@ -120,7 +120,8 @@
         "context": "Editor && vim_mode == insert && !menu",
         "bindings": {
             "j j": "vim::NormalBefore", // remap jj in insert mode to escape
-            "j k": "vim::NormalBefore" // remap jk in insert mode to escape
+            "j k": "vim::NormalBefore", // remap jk in insert mode to escape
+            "ctrl-space": "editor::ShowEditPrediction"
         }
     },
     // Rename
@@ -143,7 +144,7 @@
     {
         "context": "Workspace",
         "bindings": {
-            "space `": "terminal_panel::ToggleFocus"
+            "ctrl `": "workspace::ToggleBottomDock"
         }
     },
     {
@@ -157,15 +158,16 @@
             "ctrl-right": "workspace::ActivatePaneRight",
             "ctrl-up": "workspace::ActivatePaneUp",
             "ctrl-down": "workspace::ActivatePaneDown",
-            "space `": "terminal_panel::ToggleFocus",
-            "space b d": "pane::CloseActiveItem",
+            "ctrl `": "workspace::ToggleBottomDock",
+            "escape": "workspace::ToggleBottomDock",
+            // "space b d": "pane::CloseActiveItem",
             "alt-left": "vim::PreviousWordStart",
             "alt-right": "vim::NextWordStart",
             "alt-w": ["terminal::SendKeystroke", "ctrl-w"]
         }
     },
     {
-        "context": "Editor && mode == full",
+        "context": "Editor && mode == full && vim_mode == normal",
         "bindings": {
             "space o": "outline::Toggle"
         }
@@ -213,6 +215,8 @@
         "bindings": {
             // Map VSCode like keybindings
             // "cmd-b": "workspace::ToggleRightDock"
+
+            "ctrl-alt-o": "workspace::Open"
         }
     },
     // Run nearest task
