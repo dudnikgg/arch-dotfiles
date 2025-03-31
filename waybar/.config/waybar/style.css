@@ -73,6 +73,7 @@ tooltip {
 #custom-updates {
     background: @backround;
     color: @white;
+    padding: 0 5px;
     border-bottom: 1px solid @purple;
 }
 
