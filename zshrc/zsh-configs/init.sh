@@ -1,8 +1,3 @@
-# Rnable Powerlevel10k instant promt.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-promt-${(%):-%n}.zsh" ]];
-then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-promt-${(%):-%n}.zsh" 
-fi
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -25,8 +20,3 @@ export VISUAL=${EDITOR}
 # Add nvm
 source /usr/share/nvm/init-nvm.sh
 
-# To customize promt, run 'p10k configure' or edit ~/.p10k.zsh
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-path+=('/home/dudnikgg/.local/bin')
-export PATH

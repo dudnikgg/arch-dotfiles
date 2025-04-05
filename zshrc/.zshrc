@@ -18,6 +18,9 @@ for FILE in $FILES; do
   source $FILE
 done
 
+path+=('/home/dudnikgg/.local/bin')
+export PATH="/home/dudnikgg/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/dudnikgg/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export PATH="$HOME/bin:$PATH"

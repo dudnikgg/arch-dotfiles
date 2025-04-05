@@ -1,83 +1,128 @@
 @import url("./colors.css");
 * {
-    border: none;
-    border-radius: 0;
-    font-weight: 500;
-    padding: 0;
-    margin: 0;
-    font-family:
-        FontAwesome,
-        MartianMono Nerd Font;
-    font-size: 10px;
-    min-height: 0;
+  border: none;
+  border-radius: 0;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  font-family: FontAwesome, MartianMono Nerd Font;
+  font-size: 10px;
+  min-height: 0;
 }
 window#waybar {
-    opacity: 1;
-    padding: 0;
-    margin: 0;
-    background: @background-darker;
-    /* background: transparent; */
-    color: @foreground;
-    /* border-bottom: 1px solid @purple; */
+  opacity: 1;
+  padding: 0;
+  margin: 0;
+  background: @background-alpha;
+  /* background: transparent; */
+  color: @foreground;
+  /* border-bottom: 1px solid @purple; */
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  background: transparent;
+  margin: 5px 5px;
 }
 
 tooltip {
-    background-color: @background-darker;
-    border: 2px solid @purple;
-    font-size: 2px;
+  background-color: @background-darker;
+  border: 2px solid @purple;
+  font-size: 12px;
 }
 
-#clock,
+#workspaces button,
+#system,
 #tray,
-#cpu,
-#memory,
-#disk,
-#temperature,
+#sensors,
 #network,
 #pulseaudio,
-#custom-notification,
-#language {
-    margin: 0px 5px 0px 5px;
-    font-weight: 600;
-    padding: 0;
-    /* border-bottom: 2px solid; */
+#custom-updates,
+#custom-notification {
+  background: @selection;
+  font-weight: 700;
+  margin: 4px;
+  padding: 0px 4px;
+  border-radius: 5px;
 }
 
-#clock {
-    border-bottom: 1px solid @purple;
+#sensors #cpu,
+#sensors #memory,
+#sensors #temperature {
+  margin: 2px 6px;
+}
+
+#sensors #cpu {
+  color: @green;
+}
+
+#sensors #memory {
+  color: @yellow;
+}
+
+#sensors #temperature {
+  color: @orange;
+}
+
+#sensors #temperature.critical {
+  color: @red;
+}
+
+#sensors #disk {
+  color: @cyan;
+}
+
+#workspaces button {
+  background: @selection;
+  color: @foreground;
+}
+
+#workspaces button.active {
+  background: @purple;
+  color: @foreground;
+  font-weight: bold;
+}
+
+#workspaces button:hover {
+  background: @pink;
+}
+
+#system #clock,
+#network,
+#system #language,
+#custom-notification {
+  margin: 4px 6px;
 }
 
 #custom-notification {
-    color: @white;
-    font-size: 14px;
-    margin-right: 20px;
-    margin-left: 5px;
+  color: @pink;
+  font-size: 10px;
+  padding: 0 10px;
 }
 
 #network {
-    font-size: 11px;
-    margin-left: 20px;
+  font-size: 11px;
+  padding: 0 10px 0 7px;
+  color: @green;
+}
+
+#system #language {
+  color: @purple;
+}
+
+#system #clock {
+  color: @purple;
 }
 
 #pulseaudio {
-    border-bottom: 1px solid @green;
+  color: @orange;
 }
 
-#language {
-    /* font-size: 12px; */
-    font-weight: 400;
-    border-bottom: 1px solid @cyan;
+#pulseaudio.muted {
+  color: @red;
 }
 
-#sensors,
 #custom-updates {
-    background: @backround;
-    color: @white;
-    padding: 0 5px;
-    border-bottom: 1px solid @purple;
-}
-
-#tray {
-    border-bottom: 1px solid @orange;
-    padding: 0 10px;
+  color: @yellow;
 }

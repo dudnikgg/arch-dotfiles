@@ -16,7 +16,7 @@
     "buffer_line_height": {
         "custom": 2
     },
-    "icon_theme": "Material Icon Theme",
+    "icon_theme": "Catppuccin Frappé",
     // The name of a base set of key bindings to use.
     // This setting can take six values, each named after another
     // text editor:
@@ -118,7 +118,7 @@
     "lsp_highlight_debounce": 75,
     // Whether to pop the completions menu while typing in an editor without
     // explicitly requesting it.
-    "show_completions_on_input": false,
+    "show_completions_on_input": true,
     // Whether to display inline and alongside documentation for items in the
     // completions menu
     "show_completion_documentation": true,

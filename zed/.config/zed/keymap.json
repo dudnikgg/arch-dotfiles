@@ -37,6 +37,8 @@
             // put key-bindings here if you want them to work only in normal mode
             // Window movement bindings
             // Ctrl jklk to move between panes
+            "space b": "pane::GoBack",
+            "space f": "pane::GoForward",
             "space  left": "workspace::ActivatePaneLeft",
             "space right": "workspace::ActivatePaneRight",
             "space up": "workspace::ActivatePaneUp",

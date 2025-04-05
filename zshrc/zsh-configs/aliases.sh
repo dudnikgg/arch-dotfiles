@@ -55,3 +55,6 @@ function cp-remote() {
 # mvr() {
 #  rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files "$1"
 # }
+
+# Laravel
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
