@@ -1,8 +1,9 @@
-WALLPAPER_DIR="$HOME/.config/backgrounds"
-CURRENT_WALL=$(hyprctl hyprpaper listloaded)
+#!/bin/bash
 
-# Get a random wallpaper that is not the current one
-WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
+WALLPAPER_DIRECTORY=~/.config/backgrounds/
 
-# Apply the selected wallpaper
-hyprctl hyprpaper reload ,"$WALLPAPER"
+WALLPAPER=$(find "$WALLPAPER_DIRECTORY" -type f | shuf -n 1)
+
+hyprctl hyprpaper preload "$WALLPAPER"
+hyprctl hyprpaper wallpaper "HDMI-A-1,$WALLPAPER"
+

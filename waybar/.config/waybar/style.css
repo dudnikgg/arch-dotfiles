@@ -39,7 +39,8 @@ tooltip {
 #network,
 #pulseaudio,
 #custom-updates,
-#custom-notification {
+#custom-notification,
+#custom-docker {
   background: @selection;
   font-weight: 700;
   margin: 4px;
@@ -54,15 +55,15 @@ tooltip {
 }
 
 #sensors #cpu {
-  color: @green;
+  color: @foreground;
 }
 
 #sensors #memory {
-  color: @yellow;
+  color: @foreground;
 }
 
 #sensors #temperature {
-  color: @orange;
+  color: @foreground;
 }
 
 #sensors #temperature.critical {
@@ -70,7 +71,7 @@ tooltip {
 }
 
 #sensors #disk {
-  color: @cyan;
+  color: @foreground;
 }
 
 #workspaces button {
@@ -125,4 +126,8 @@ tooltip {
 
 #custom-updates {
   color: @yellow;
+}
+
+#custom-docker {
+  color: @cyan;
 }

@@ -11,8 +11,13 @@
     //"hyprland/window",
     "tray"
   ],
-  "modules-center": ["custom/updates", "group/sensors"],
-  "modules-right": ["network", "pulseaudio", "group/system", "custom/notification"],
+  "modules-center": ["custom/docker", "custom/updates", "group/sensors"],
+  "modules-right": [
+    "network",
+    "pulseaudio",
+    "group/system",
+    "custom/notification"
+  ],
   "group/system": {
     "orientation": "inherit",
     // "drawer": {
@@ -24,12 +29,12 @@
   },
   "group/sensors": {
     "orientation": "inherit",
-    // "drawer": {
-    //   "transition-duration": 500,
-    //   "children-class": "drawer-child",
-    //   "transition-left-to-right": false
-    // },
-    "modules": ["disk", "cpu", "memory", "temperature"]
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "drawer-child",
+      "transition-left-to-right": false
+    },
+    "modules": ["cpu", "disk", "memory", "temperature"]
   },
   "tray": {
     "icon-size": 12,
@@ -45,6 +50,11 @@
     },
     "exec-if": "which waybar-module-pacman-updates",
     "exec": "waybar-module-pacman-updates --interval-seconds 5 --network-interval-seconds 300"
+  },
+  "custom/docker": {
+    "exec": "~/.config/waybar/custom/docker.sh",
+    "return-type": "json",
+    "interval": 10
   },
   "custom/notification": {
     "tooltip": false,
