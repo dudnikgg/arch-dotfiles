@@ -20,10 +20,10 @@ alias _git_current_branch="git rev-parse --abbrev-ref HEAD"
 alias gpl='git pull origin $(_git_current_branch)'
 
 alias ls='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first'
-alias ll='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first -l --git -h'
-alias lls='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first --total-size -l --git -h'
+alias ll='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first -l -g --git -h'
+alias lls='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first --total-size -l -g --git -h'
 alias la='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first -a'
-alias lla='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first --total-size -a -l --git -h'
+alias lla='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first --total-size -a -l -g --git -h'
 
 # Function to create a new branch with a specified format
 function gcb() {
@@ -58,3 +58,6 @@ function cp-remote() {
 
 # Laravel
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+
+# Docker TODO: not working
+alias dsa='docker stop $(docker ps -q)'

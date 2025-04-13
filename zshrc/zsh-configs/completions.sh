@@ -1,4 +1,6 @@
 zinit light zsh-users/zsh-completions
+zinit ice atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone"
+zinit light g-plane/pnpm-shell-completion
 
 # Load completions
 autoload -U compinit && compinit

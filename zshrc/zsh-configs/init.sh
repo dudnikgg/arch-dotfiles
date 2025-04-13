@@ -14,7 +14,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
-export EDITOR=nvim
+export EDITOR=code
 export VISUAL=${EDITOR}
 
 # Add nvm

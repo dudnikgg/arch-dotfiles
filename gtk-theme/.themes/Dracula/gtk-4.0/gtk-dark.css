@@ -28,7 +28,7 @@
 /* text widgets and the like base background color on backdrop windows */
 @define-color theme_unfocused_base_color #2a2c39;
 /* base background color of selections on backdrop windows */
-@define-color theme_unfocused_selected_bg_color rgba(189, 147, 249, 0.5);
+@define-color theme_unfocused_selected_bg_color rgba(189, 147, 249, 0.8);
 /* text/foreground color of selections on backdrop windows */
 @define-color theme_unfocused_selected_fg_color #f8f8f2;
 /* widgets main borders color */
