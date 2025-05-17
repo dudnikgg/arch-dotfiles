@@ -19,6 +19,7 @@ for FILE in $FILES; do
 done
 
 path+=('/home/dudnikgg/.local/bin')
+path+=('/usr/bin/lazygit')
 export PATH="/home/dudnikgg/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/dudnikgg/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 

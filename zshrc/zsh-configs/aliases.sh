@@ -1,5 +1,6 @@
 # aliases
 alias cdd="cd ~/dd-dev/"
+alias cdv="cd ~/Documents/ObsidianVault/md-vault/"
 alias p=pnpm
 alias g=git
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -19,11 +20,14 @@ alias gdst="git diff --stat --staged"
 alias _git_current_branch="git rev-parse --abbrev-ref HEAD"
 alias gpl='git pull origin $(_git_current_branch)'
 
-alias ls='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first'
+alias ls='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first -l -g --git -h'
+alias la='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first -a -l -g --git -h'
 alias ll='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first -l -g --git -h'
 alias lls='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first --total-size -l -g --git -h'
-alias la='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first -a'
-alias lla='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first --total-size -a -l -g --git -h'
+alias lla='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first -l -a -g --git -h'
+
+# Clean Arch Trash
+alias clt='echo -n Taking out teh trash | pv -qL 10 && rm -rf  ~/.local/share/Trash/files' 
 
 # Function to create a new branch with a specified format
 function gcb() {
@@ -44,20 +48,29 @@ alias rcp="rsync --archive -hh --partial --info=stats1,progress2 --modify-window
 alias rmv="rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files"
 
 # Rsync Copy (cpr) - Works with Remote Paths
-function cp-remote() {
+function rcp-remote() {
   local remote="$1"
   local host="$2"
 
   rsync --archive -hh --partial --stats --progress --modify-window=1 --exclude=node_modeles "${remote}" "${host}"
 }
 
-# Rsync Move (mvr) - Works with Remote
-# mvr() {
-#  rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files "$1"
-# }
+# Lazygit
+alias gl='lazygit'
 
 # Laravel
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
-# Docker TODO: not working
+# Docker
 alias dsa='docker stop $(docker ps -q)'
+alias ctop='docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest' 
+
+# Zen profiles
+alias zdudnikgg='/usr/bin/zen-browser -P dudnikgg &>/dev/null &'
+alias zinnocode='/usr/bin/zen-browser -P innocode &>/dev/null &'
+alias zcodix='/usr/bin/zen-browser -P codix &>/dev/null &'
+
+# Firefox profiles
+alias fdudnikgg='/usr/bin/firefox -P dudnikgg &>/dev/null &'
+alias finnocode='/usr/bin/firefox -P innocode &>/dev/null &'
+alias fcodix='/usr/bin/firefox -P codix &>/dev/null &'

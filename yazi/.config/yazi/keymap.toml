@@ -1,0 +1,38 @@
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+[[manager.prepend_keymap]]
+on = [ "g", "d" ]
+run = "cd ~/dd-dev"
+desc = "Go ~/dd-dev"
+
+[[manager.prepend_keymap]]
+on = [ "g", "v" ]
+run = "cd ~/Documents/ObsidianVault/md-vault"
+desc = "Go Obsidian Vault"
+
+# Plugins
+
+# Ouch (Compress) plugin
+[[manager.prepend_keymap]]
+on = ["c", "a"]
+run = "plugin ouch"
+desc = "Compress with ouch"
+
+# Lazygit plugin
+[[manager.prepend_keymap]]
+on = ["g", "l"]
+run = "plugin lazygit"
+desc = "run lazygit"
+
+# Trash plugin
+[[manager.prepend_keymap]]
+on = ["d","d",]
+run = "remove"
+desc = "Trash selected files"
+
+[[manager.prepend_keymap]]
+on = ["d","u",]
+run = "plugin restore"
+desc = "Restore last deleted files/folders"

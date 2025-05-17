@@ -1,0 +1,22 @@
+[[plugin.deps]]
+use = "boydaihungst/restore"
+rev = "539aad5"
+hash = "fd162085ec09fef4b4060c92bba31994"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:vcs-files"
+rev = "864a021"
+hash = "36405f8781fcaf33ceab24dffd5cea19"
+
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "7a08a09"
+hash = "a1fa2b3e1826c3a34804ea8c548e9f80"
+
+[[plugin.deps]]
+use = "ndtoan96/ouch"
+rev = "2496cd9"
+hash = "5b9dea47776a30946cfbf83232d18fb1"
+
+[flavor]
+deps = []

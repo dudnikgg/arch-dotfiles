@@ -9,3 +9,5 @@ zstyle ':completion:*' mathcer-list 'm:{a-z}={A-Za-a}'
 zstyle ':completion:*' menu no
 
 zinit cdreplay -q
+
+eval "$(zoxide init zsh)"
