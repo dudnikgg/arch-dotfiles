@@ -1,0 +1,131 @@
+// Config //
+configuration {
+    modi:                        "drun,window,run";
+    show-icons:                  true;
+    display-drun:                " ";
+    display-run:                 " ";
+    display-filebrowser:         " ";
+    display-window:              " ";
+    drun-display-format:         "{name}";
+    window-format:               "{w}{t}";
+    font:                        "MartianMono Nerd Font 12";
+    icon-theme:                  "default";
+    case-sensitive:              false;
+    transient-window: true;
+}
+
+@theme "~/.config/rofi/themes/dracula.rasi"
+
+// // Main //
+window {
+    height:                      25em;
+    width:                       45%;
+    transparency:                "real";
+    fullscreen:                  false;
+    enabled:                     true;
+    cursor:                      "default";
+    spacing:                     0em;
+    padding:                     0em;
+    border-radius:               0;
+    border: 2px solid;
+    border-color:                @main-br;
+    background-color:            @main-bg;
+    children: [ "bgbox", "mainbox" ];
+    orientation: horizontal;
+}
+
+// BG Box //
+bgbox {
+    background-color:            transparent;
+    background-image:            url("~/.config/backgrounds/dracula-2-bg.png", height);
+}
+
+mainbox {
+    enabled:                     true;
+    spacing:                     1em;
+    padding:                     1em;
+    orientation:                 vertical;
+    children:                    [ "inputbar" , "listbox", "mode-switcher" ];
+    background-color:            transparent;
+}
+
+
+// Inputs //
+inputbar {
+    enabled:                     true;
+    spacing:                     0.2em;
+    padding:                     0.2em;
+}
+// Lists //
+listbox {
+    spacing:                     0em;
+    padding:                     0em;
+    children:                    [ "dummy" , "listview" , "dummy" ];
+    background-color:            #fff;
+}
+listview {
+    enabled:                     true;
+    spacing:                     0em;
+    padding:                     1em;
+    columns:                     1;
+    lines:                       7;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    expand:                      false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    cursor:                      "default";
+    background-color:            transparent;
+    text-color:                  @main-fg;
+}
+dummy {
+    background-color:            transparent;
+}
+
+
+// Elements //
+element {
+    enabled:                     true;
+    spacing:                     1em;
+    padding:                     0.5em 0.5em 0.5em 1.5em;
+    cursor:                      pointer;
+    border-radius:               10px;
+    background-color:            transparent;
+    text-color:                  @main-fg;
+}
+element selected.normal {
+    background-color:            @select-bg;
+    text-color:                  @select-fg;
+}
+element-icon {
+    size:                        2.7em;
+    cursor:                      inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+element-text {
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+    cursor:                      inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+
+// Error message //
+error-message {
+    text-color:                  @main-fg;
+    background-color:            @main-bg;
+    text-transform:              capitalize;
+    children:                    [ "textbox" ];
+}
+
+textbox {
+    text-color:                  inherit;
+    background-color:            inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+}
+

@@ -71,6 +71,6 @@ alias zinnocode='/usr/bin/zen-browser -P innocode &>/dev/null &'
 alias zcodix='/usr/bin/zen-browser -P codix &>/dev/null &'
 
 # Firefox profiles
-alias fdudnikgg='/usr/bin/firefox -P dudnikgg &>/dev/null &'
-alias finnocode='/usr/bin/firefox -P innocode &>/dev/null &'
-alias fcodix='/usr/bin/firefox -P codix &>/dev/null &'
+alias fdudnikgg='/usr/bin/firefox -p dudnikgg &>/dev/null &'
+alias finnocode='/usr/bin/firefox -p innocode &>/dev/null &'
+alias fcodix='/usr/bin/firefox -p codix &>/dev/null &'

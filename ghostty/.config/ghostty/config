@@ -45,7 +45,7 @@
 font-size = 14
 font-family = Hack Nerd Font Mono
 theme = Dracula
-background-opacity = 0.55
+background-opacity = 1
 gtk-adwaita = false
 
 # Keybindings
