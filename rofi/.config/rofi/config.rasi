@@ -1,11 +1,15 @@
 // Config //
 configuration {
-    modi:                        "drun,window,run";
+    modi:                        "drun,window,run,nerdy,emoji";
     show-icons:                  true;
     display-drun:                " ";
     display-run:                 " ";
     display-filebrowser:         " ";
     display-window:              " ";
+    display-nerdy:               " ";
+    display-emoji:               "󰞅 ";
+    emoji-mode:                  "copy";
+    emoji-format:                "{emoji}<span weight="bold">{name}</span>";
     drun-display-format:         "{name}";
     window-format:               "{w}{t}";
     font:                        "MartianMono Nerd Font 12";
@@ -27,11 +31,11 @@ window {
     spacing:                     0em;
     padding:                     0em;
     border-radius:               0;
-    border: 2px solid;
+    border:                      2px solid;
     border-color:                @main-br;
     background-color:            @main-bg;
-    children: [ "bgbox", "mainbox" ];
-    orientation: horizontal;
+    children:                    [ "bgbox", "mainbox" ];
+    orientation:                 horizontal;
 }
 
 // BG Box //
@@ -55,21 +59,43 @@ inputbar {
     enabled:                     true;
     spacing:                     0.2em;
     padding:                     0.2em;
+    background-color:            transparent;
+    border:                      1px solid;
+    border-color:                @purple;
+    children:                    [ "prompt", "entry" ];
 }
+
+prompt {
+    enabled:                     true;
+    background-color:            transparent;
+    color:                       @purple;
+    padding:                     5px;
+}
+
+entry {
+    enabled:                     true;
+    padding:                     5px;
+    background-color:            @main-bg;
+    color:                       @main-fg;
+}
+
+
 // Lists //
 listbox {
     spacing:                     0em;
-    padding:                     0em;
-    children:                    [ "dummy" , "listview" , "dummy" ];
-    background-color:            #fff;
+    // padding:                     0em;
+    padding:                     0 0 15px 0;
+
+    children:                    [ "listview" ];
+    background-color:            @main-bg;
 }
 listview {
     enabled:                     true;
     spacing:                     0em;
-    padding:                     1em;
+    padding:                     10px 0 0 0;
     columns:                     1;
-    lines:                       7;
-    cycle:                       true;
+    lines:                       6;
+    cycle:                       false;
     dynamic:                     true;
     scrollbar:                   false;
     layout:                      vertical;
@@ -80,19 +106,17 @@ listview {
     cursor:                      "default";
     background-color:            transparent;
     text-color:                  @main-fg;
+    border:                      1px solid 0px solid 1px solid 0px solid;
+    border-color:                @purple;
 }
-dummy {
-    background-color:            transparent;
-}
-
 
 // Elements //
 element {
     enabled:                     true;
-    spacing:                     1em;
-    padding:                     0.5em 0.5em 0.5em 1.5em;
+    spacing:                     0.5em;
+    padding:                     0.5em 0.5em 0.5em 0.5em;
     cursor:                      pointer;
-    border-radius:               10px;
+    border-radius:               0px;
     background-color:            transparent;
     text-color:                  @main-fg;
 }
@@ -101,7 +125,7 @@ element selected.normal {
     text-color:                  @select-fg;
 }
 element-icon {
-    size:                        2.7em;
+    size:                        1.89em;
     cursor:                      inherit;
     background-color:            transparent;
     text-color:                  inherit;
@@ -129,3 +153,14 @@ textbox {
     horizontal-align:            0.5;
 }
 
+mode-switcher {
+    enabled:                     true;
+    background-color:            transparent;
+
+}
+
+button {
+    enabled:                     true;
+    background-color:            transparent;
+    color:                       @cyan;
+}
