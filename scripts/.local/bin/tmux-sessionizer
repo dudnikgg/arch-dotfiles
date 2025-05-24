@@ -6,7 +6,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd -H . ~/dotfiles/**/**/ ~/dd-dev/**/**/ ~/**/**/ ~/Documents/ObsidianVault/md-vault -t d -d 1 | fzf)
+    selected=$(fd -H . ~/dotfiles ~/dd-dev ~/dd-dev/localsites/** ~/ ~/Documents/ObsidianVault/md-vault -t d -d 1 | fzf)
 fi
 
 if [[ -z $selected ]]; then

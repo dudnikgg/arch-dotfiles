@@ -44,6 +44,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 export EDITOR=nvim
 export VISUAL=${EDITOR}
+export PATH="$HOME/.local/bin:$PATH"
 
 # Add nvm
 source /usr/share/nvm/init-nvm.sh
@@ -51,8 +52,6 @@ source /usr/share/nvm/init-nvm.sh
 
 # Keybinds
 bindkey -e
-bindkey ";5D" backward-word     # ctrl←
-bindkey ";5C" forward-word     # ctrl→
 # bindkey ";3D" backward-word     # alt←
 # bindkey ";3C" forward-word      # alt→
 # bindkey ";9D" beginning-of-line # alt+←
@@ -170,7 +169,6 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
-path+=('~/.local/bin')
 path+=('/usr/bin/lazygit')
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
