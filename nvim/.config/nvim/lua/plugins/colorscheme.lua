@@ -9,9 +9,11 @@ return {
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require("dracula").setup({
+
         colors = {
           bg = "#0E1419",
         },
+        transparent_bg = true, -- default false
       })
 
       -- Load the colorscheme here.

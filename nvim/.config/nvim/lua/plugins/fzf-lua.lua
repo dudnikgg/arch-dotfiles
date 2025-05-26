@@ -56,11 +56,11 @@ return {
       desc = "[/] Live grep the current buffer",
     },
     {
-      "<leader>fbf",
+      "<leader>fb",
       function()
         require("fzf-lua").builtin()
       end,
-      desc = "[F]ind [B]uiltin [F]inders",
+      desc = "[F]ind [B]uiltin",
     },
   },
 }

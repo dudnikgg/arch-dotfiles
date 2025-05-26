@@ -20,7 +20,6 @@ vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
@@ -30,6 +29,19 @@ vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally"
 vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 -- close current split window
 vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+
+-- Resize with arrows
+vim.keymap.set("n", "<down>", ":resize -2<CR>", opts)
+vim.keymap.set("n", "<up>", ":resize +2<CR>", opts)
+vim.keymap.set("n", "<right>", ":vertical resize -2<CR>", opts)
+vim.keymap.set("n", "<left>", ":vertical resize +2<CR>", opts)
+
+-- Navigate between splits
+--  Use CTRL+<hjkl> to switch between windows
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts) -- Move to the split above
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts) -- Move to the split below
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts) -- Move to the left split
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts) -- Move to the right split
 
 -- tab stuff
 vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>") --open new tab
@@ -61,14 +73,14 @@ vim.keymap.set("n", "<leader>Y", [["+Y]], opts)
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to clipboard" })
 
 -- Delete without copying
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>dd", [["_d]])
 vim.keymap.set("n", "x", '"_x', opts)
 
 vim.keymap.set("n", "Q", "<nop>")
 
 -- Global word replace
 vim.keymap.set(
-  "n",
+  { "n", "v" },
   "<leader>s",
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = "Replace word cursor is on globally" }

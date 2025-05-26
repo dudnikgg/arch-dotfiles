@@ -16,5 +16,8 @@ return {
       },
     },
   },
+  root_dir = function(fname)
+    local util = require("lspconfig.util")
+    return util.find_git_ancestor(fname) or vim.fn.stdpath("config")
+  end,
 }
-
