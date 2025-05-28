@@ -1,13 +1,11 @@
 return {
-  "thePrimeagen/harpoon",
-  enabled = true,
+  "ThePrimeagen/harpoon",
   branch = "harpoon2",
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
   config = function()
     local harpoon = require("harpoon")
-    local conf = require("fzf-lua").values
 
     harpoon:setup({
       global_settings = {
@@ -15,6 +13,9 @@ return {
         save_on_change = true,
       },
     })
+
+    local harpoon_extensions = require("harpoon.extensions")
+    harpoon:extend(harpoon_extensions.builtins.highlight_current_file())
 
     -- NOTE:
     -- fzf-lua into Harpoon function
@@ -43,7 +44,7 @@ return {
     end, { desc = "[H]arpoon [A]dd file to the list" })
 
     vim.keymap.set("n", "<leader>hd", function()
-      harpoon:list():remo()
+      harpoon:list():remove()
     end, { desc = "[H]arpoon [D]elete file from the list" })
 
     vim.keymap.set("n", "<C-e>", function()
