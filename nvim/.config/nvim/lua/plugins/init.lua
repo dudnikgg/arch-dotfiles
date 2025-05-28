@@ -4,10 +4,6 @@ return {
   require("plugins.which-key"),
   require("plugins.colorscheme"),
 
-  require("plugins.lsp.mason"),
-  require("plugins.lsp.lsp-config"),
-  require("plugins.autocompletion"),
-
   require("plugins.oil"),
   require("plugins.formatter"),
   require("plugins.fzf-lua"),
@@ -18,4 +14,17 @@ return {
   require("plugins.mini-scope"),
   -- require("plugins.mini-animate"),
   require("plugins.treesitter"),
+  require("plugins.todo-comments"),
+  require("plugins.harpoon"),
+  require("plugins.flash"),
+  require("plugins.incline"),
+  require("plugins.highlight-colors"),
+
+  require("plugins.lsp.autocompletion"),
+  require("plugins.lsp.mason"),
+  require("plugins.lsp.lsp-config"),
+  require("plugins.lsp.html-css-cmp"),
+
+  require("plugins.obsidian"),
+  require("plugins.markdown-preview"),
 }

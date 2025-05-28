@@ -69,13 +69,3 @@ keybind = alt+shift+n=new_window
 keybind = alt+shift+t=new_tab
 keybind = alt+ctrl+,=open_config
 keybind = alt+shift+w=close_surface
-
-# Move word left
-keybind = alt+h=text:\x1bb
-# Move word right
-keybind = alt+l=text:\x1bf
-# Move to beginning of line
-keybind = alt+shift+h=text:\x1
-# Move to end of line
-keybind = alt+shift+l=text:\x05
-keybind = alt+e=text:\x05

@@ -6,12 +6,20 @@ local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- save, quit
+vim.keymap.set("n", "<leader>w", ":w<cr>")
+vim.keymap.set("n", "<leader>q", ":q<cr>")
+
+-- use gh to move to the beginning of the line in normal mode
+-- use gl to move to the end of the line in normal mode
+vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "[G]o to the beginning line" })
+vim.keymap.set("n", "gl", "$", { desc = "[G]o to the end of the line" })
+-- In visual mode, after going to the end of the line, come back 1 character
+vim.keymap.set("v", "gl", "$h", { desc = "[G]o to the end of the line" })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
--- Diagnostic keymaps
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
@@ -78,14 +86,6 @@ vim.keymap.set("n", "x", '"_x', opts)
 
 vim.keymap.set("n", "Q", "<nop>")
 
--- Global word replace
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>s",
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "Replace word cursor is on globally" }
-)
-
 -- Copy filepath to the clipboard
 vim.keymap.set("n", "<leader>fp", function()
   local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
@@ -93,12 +93,7 @@ vim.keymap.set("n", "<leader>fp", function()
   print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
 end, { desc = "Copy file path to clipboard" })
 
--- Toggle LSP diagnostics visibility
-local isLspDiagnosticsVisible = true
-vim.keymap.set("n", "<leader>lx", function()
-  isLspDiagnosticsVisible = not isLspDiagnosticsVisible
-  vim.diagnostic.config({
-    virtual_text = isLspDiagnosticsVisible,
-    underline = isLspDiagnosticsVisible,
-  })
-end, { desc = "Toggle LSP diagnostics" })
+-- Functions to toggle comments in JavaScript
+-- (for use in Vue files, where comment.nvim is not working for me)
+-- vim.keymap.set({'n', 'v'}, '<leader>jc', [[:s/^/\/\//g<cr>]], { silent = true })
+-- vim.keymap.set({'n', 'v'}, '<leader>jd', [[:s/\/\///g<cr>]], { silent = true })

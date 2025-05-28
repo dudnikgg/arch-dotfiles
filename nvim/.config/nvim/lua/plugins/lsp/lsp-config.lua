@@ -7,6 +7,65 @@ return {
   },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
+    require("mason").setup()
+    require("mason-lspconfig").setup()
+
+    -- NOTE: seems like not needed anymore
+    --
+    -- local capabilities = require("blink.cmp").get_lsp_capabilities() -- Import capabilities from blink.cmp
+    -- vim.lsp.config("*", {
+    --   capabilities = capabilities,
+    -- })
+
+    -- Add other LSP servers as needed, e.g., gopls, eslint, html, etc.
+    vim.lsp.enable("lua_ls")
+    vim.lsp.enable("html")
+    vim.lsp.enable("vue_ls")
+    vim.lsp.enable("ts_ls")
+    vim.lsp.enable("bashls")
+    vim.lsp.enable("cssls")
+    vim.lsp.enable("tailwindcss")
+    vim.lsp.enable("gopls")
+    vim.lsp.enable("emmet_ls")
+    vim.lsp.enable("emmet_language_server")
+    vim.lsp.enable("marksman")
+
+    local vue_ls_share = vim.fn.expand("$MASON/packages/vue-language-server")
+    local vue_plugin_path = vue_ls_share .. "/node_modules/@vue/language-server"
+
+    require("lspconfig").ts_ls.setup({
+      init_options = {
+        plugins = {
+          {
+            name = "@vue/typescript-plugin",
+            location = vue_plugin_path,
+            languages = { "vue" },
+          },
+        },
+      },
+      filetypes = { "typescript", "javascript", "vue" },
+    })
+
+    -- Configure eash LSP
+    vim.lsp.config("lua_ls", {
+      settings = {
+        ["Lua"] = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+          completion = {
+            callSnippet = "Replace",
+          },
+          workspace = {
+            library = {
+              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+              [vim.fn.stdpath("config") .. "/lua"] = true,
+            },
+          },
+        },
+      },
+    })
+
     -- NOTE: LSP Keybidings
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -35,9 +94,22 @@ return {
 
         map("<leader>rn", vim.lsp.buf.rename, "Smart [R]e[N]ame") -- smart rename
 
-        map("<leader>d", vim.diagnostic.open_float, "Show line diagnostics") -- show diagnostics for line
+        map("<leader>dq", require("fzf-lua").loclist, "Open diagnostic [Q]uickfix list")
+        map("<leader>ds", vim.diagnostic.open_float, "Show line diagnostics") -- show diagnostics for line
 
-        map("<leader>k", vim.lsp.buf.hover, "Show documentation for what is under cursor") -- show documentation for what is under cursor
+        -- Toggle LSP diagnostics visibility
+        local isLspDiagnosticsVisible = true
+        vim.keymap.set("n", "<leader>lx", function()
+          isLspDiagnosticsVisible = not isLspDiagnosticsVisible
+          vim.diagnostic.config({
+            virtual_text = isLspDiagnosticsVisible,
+            underline = isLspDiagnosticsVisible,
+          })
+        end, { desc = "Toggle LSP diagnostics" })
+
+        map("<leader>dk", function()
+          vim.lsp.buf.hover({ border = "bold", max_height = 25, max_width = 120 })
+        end, "Show documentation for what is under cursor") -- show documentation for what is under cursor
 
         map("<leader>rs", ":LspRestart<CR>", "Restart LSP") -- mapping to restart lsp if necessary
 
@@ -48,27 +120,27 @@ return {
         --    See `:help CursorHold` for information about when this is executed
         --
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
-        local highlight_augroup = vim.api.nvim_create_augroup("UserLSPHighlight", { clear = false })
-        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-          buffer = event.buf,
-          group = highlight_augroup,
-          callback = vim.lsp.buf.document_highlight,
-        })
-
-        vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-          buffer = event.buf,
-          group = highlight_augroup,
-          callback = vim.lsp.buf.clear_references,
-        })
-
-        vim.api.nvim_create_autocmd("LspDetach", {
-          group = vim.api.nvim_create_augroup("UserLSPHighlight", { clear = true }),
-          callback = function(event2)
-            vim.lsp.buf.clear_references()
-            vim.api.nvim_clear_autocmds({ group = "UserLSPHighlight", buffer = event2.buf })
-          end,
-        })
-
+        -- local highlight_augroup = vim.api.nvim_create_augroup("UserLSPHighlight", { clear = false })
+        -- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        --   buffer = event.buf,
+        --   group = highlight_augroup,
+        --   callback = vim.lsp.buf.document_highlight,
+        -- })
+        --
+        -- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+        --   buffer = event.buf,
+        --   group = highlight_augroup,
+        --   callback = vim.lsp.buf.clear_references,
+        -- })
+        --
+        -- vim.api.nvim_create_autocmd("LspDetach", {
+        --   group = vim.api.nvim_create_augroup("UserLSPHighlight", { clear = true }),
+        --   callback = function(event2)
+        --     vim.lsp.buf.clear_references()
+        --     vim.api.nvim_clear_autocmds({ group = "UserLSPHighlight", buffer = event2.buf })
+        --   end,
+        -- })
+        --
         -- The following code creates a keymap to toggle inlay hints in your
         -- code, if the language server you are using supports them
         --
@@ -94,55 +166,5 @@ return {
       underline = true, -- Specify Underline diagnostics
       update_in_insert = false, -- Keep diagnostics active in insert mode
     })
-
-    local lspconfig = require("lspconfig")
-    local capabilities = require("blink.cmp").get_lsp_capabilities() -- Import capabilities from blink.cmp
-
-    -- Configure lua_ls
-    lspconfig.lua_ls.setup({
-      capabilities = capabilities,
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
-          completion = {
-            callSnippet = "Replace",
-          },
-          workspace = {
-            library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
-            },
-          },
-        },
-      },
-    })
-    --
-    -- -- Configure tsserver (TypeScript and JavaScript)
-    -- lspconfig.ts_ls.setup({
-    --     capabilities = capabilities,
-    --     root_dir = function(fname)
-    --         local util = lspconfig.util
-    --         return not util.root_pattern('deno.json', 'deno.jsonc')(fname)
-    --             and util.root_pattern('tsconfig.json', 'package.json', 'jsconfig.json', '.git')(fname)
-    --     end,
-    --     single_file_support = false,
-    --     on_attach = function(client, bufnr)
-    --         -- Disable formatting if you're using a separate formatter like Prettier
-    --         client.server_capabilities.documentFormattingProvider = false
-    --     end,
-    --     init_options = {
-    --         preferences = {
-    --             includeCompletionsWithSnippetText = true,
-    --             includeCompletionsForImportStatements = true,
-    --         },
-    --     },
-    -- })
-
-    -- Add other LSP servers as needed, e.g., gopls, eslint, html, etc.
-    -- lspconfig.gopls.setup({ capabilities = capabilities })
-    lspconfig.html.setup({ capabilities = capabilities })
-    -- lspconfig.cssls.setup({ capabilities = capabilities })
   end,
 }

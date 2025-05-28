@@ -24,6 +24,7 @@ return {
           ["vim.lsp.util.stylize_markdown"] = true,
           ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
         },
+        hover = { enabled = false },
       },
       views = {
         popupmenu = {
@@ -45,15 +46,15 @@ return {
         },
 
         mini = {
-          -- size = {
-          --   -- width = "auto",
-          --   -- height = "auto",
-          --   -- max_height = 15,
-          -- },
-          -- position = {
-          --   row = -2,
-          --   col = "100%",
-          -- },
+          size = {
+            -- width = "auto",
+            -- height = "auto",
+            -- max_height = 15,
+          },
+          position = {
+            row = -2,
+            col = "100%",
+          },
         },
       },
       health = {

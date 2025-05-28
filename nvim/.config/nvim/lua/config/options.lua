@@ -8,6 +8,9 @@
 -- vim.cmd("let g:netrw_liststyle = 3")
 vim.cmd("let g:netrw_banner = 0 ") -- Hide banner in netrw (if used)
 
+-- Border style around floating windows
+vim.o.winborder = "bold"
+
 -- Tab size
 vim.opt.tabstop = 2 -- Visual width of tab characters
 vim.opt.softtabstop = 2 -- Spaces inserted when pressing Tab
@@ -75,15 +78,6 @@ vim.opt.scrolloff = 10 -- Keep 10 lines visible above/below cursor
 
 vim.opt.confirm = true -- Ask to save changes instead of failing commands
 
-vim.opt.backspace = { "start", "eol", "indent" } -- Allow backspacing over everything in insert mode
+vim.o.conceallevel = 2 -- set conceal level for obsidian plugin
 
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+vim.opt.backspace = { "start", "eol", "indent" } -- Allow backspacing over everything in insert mode

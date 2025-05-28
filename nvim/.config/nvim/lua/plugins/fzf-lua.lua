@@ -1,11 +1,13 @@
 return {
   "ibhagwan/fzf-lua",
+  lazy = false,
   -- optional for icon support
   dependencies = { "nvim-tree/nvim-web-devicons" },
   -- or if using mini.icons/mini.nvim
   -- dependencies = { "echasnovski/mini.icons" },
   opts = {},
   keys = {
+    -- keymaps
     {
       "<leader>ff",
       function()
@@ -14,7 +16,7 @@ return {
       desc = "[F]ind [F]iles in Project Directory",
     },
     {
-      "<leader>fg",
+      "<leader>fz",
       function()
         require("fzf-lua").live_grep_native()
       end,
@@ -63,4 +65,10 @@ return {
       desc = "[F]ind [B]uiltin",
     },
   },
+
+  config = function()
+    require("fzf-lua").register_ui_select({
+      winopts = {},
+    })
+  end,
 }

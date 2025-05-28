@@ -52,17 +52,15 @@ source /usr/share/nvm/init-nvm.sh
 
 # Keybinds
 bindkey -e
-# bindkey ";3D" backward-word     # alt←
-# bindkey ";3C" forward-word      # alt→
-# bindkey ";9D" beginning-of-line # alt+←
-# bindkey ";9C" end-of-line       # alt+→
+bindkey "^[h" backward-char     # alt-h
+bindkey "^[l" forward-char      # alt-l
 bindkey "^[w" backward-delete-word # alt+w
-# bindkey "^[u" undo # alt+u
-# bindkey "^[r" redo # alt+r
-bindkey "^[q" beginning-of-line # alt+q
+bindkey '^[a' beginning-of-line # alt-a
 bindkey "^[e" end-of-line # alt+e
 bindkey "^[[A" history-beginning-search-backward # 
 bindkey "^[[B" history-beginning-search-forward # 
+bindkey "^[k" history-beginning-search-backward # alt-k
+bindkey "^[j" history-beginning-search-forward # alt-j
 
 # Options
 HISTSIZE=5000
@@ -82,7 +80,6 @@ WORDCHARS='_'
 
 # aliases
 alias cdd="cd ~/dd-dev/"
-alias cdv="cd ~/Documents/ObsidianVault/md-vault/"
 alias p=pnpm
 alias g=git
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -159,6 +156,13 @@ alias fcodix='/usr/bin/firefox -p codix &>/dev/null &'
 
 # Neovim
 alias vi='nvim'
+
+# Tmux
+alias t=tmux
+
+# Obsidian
+alias cdo='cd ~/Documents/ObsidianVault/md-vault/'
+alias ov='vi ~/Documents/ObsidianVault/md-vault/_inbox/*.md'
 
 # Yazi CWD
 function y() {

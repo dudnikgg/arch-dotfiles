@@ -31,21 +31,24 @@ return {
         "lua_ls",
         -- "ts_ls", currently using a ts plugin
         "html",
-        -- "cssls",
-        -- "tailwindcss",
-        -- "gopls",
-        -- "emmet_ls",
-        -- "emmet_language_server",
-        -- "eslint",
-        -- "marksman",
+        "vue_ls",
+        "ts_ls",
+        "bashls",
+        "cssls",
+        "tailwindcss",
+        "gopls",
+        "emmet_ls",
+        "emmet_language_server",
+        "marksman",
       },
     })
 
     mason_tool_installer.setup({
       ensure_installed = {
-        "prettier", -- prettier formatter
+        "prettierd", -- prettier formatter
         "stylua", -- lua formatter
-        "denols",
+        "beautysh",
+        "eslint",
         -- { 'eslint_d', version = '13.1.2' },
       },
     })
