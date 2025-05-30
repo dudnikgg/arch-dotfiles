@@ -9,6 +9,6 @@ return {
   config = function()
     local twilight = require("twilight")
 
-    vim.keymap.set("n", "<leader>de", "<cmd>:TwilightEnable<CR><cmd>", { desc = "[D]im [E]nable" })
+    vim.keymap.set("n", "<leader>de", "<cmd>:TwilightEnable<CR>", { desc = "[D]im [E]nable" })
   end,
 }

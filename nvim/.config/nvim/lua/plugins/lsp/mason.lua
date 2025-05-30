@@ -10,7 +10,6 @@ return {
 
   config = function()
     local mason = require("mason")
-    local mason_lspconfig = require("mason-lspconfig")
     local mason_tool_installer = require("mason-tool-installer")
 
     mason.setup({
@@ -24,25 +23,6 @@ return {
       },
     })
 
-    mason_lspconfig.setup({
-      automatic_enable = false,
-      -- servers for mason to install
-      ensure_installed = {
-        "lua_ls",
-        -- "ts_ls", currently using a ts plugin
-        "html",
-        "vue_ls",
-        "ts_ls",
-        "bashls",
-        "cssls",
-        "tailwindcss",
-        "gopls",
-        "emmet_ls",
-        "emmet_language_server",
-        "marksman",
-      },
-    })
-
     mason_tool_installer.setup({
       ensure_installed = {
         "prettierd", -- prettier formatter
@@ -50,6 +30,8 @@ return {
         "beautysh",
         "eslint",
         -- { 'eslint_d', version = '13.1.2' },
+        "phpcs",
+        "phpcbf",
       },
     })
   end,

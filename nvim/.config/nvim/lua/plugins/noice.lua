@@ -6,10 +6,15 @@ return {
   },
   dependencies = {
     "MunifTanjim/nui.nvim",
+    "rcarriga/nvim-notify",
   },
 
   config = function()
     local noice = require("noice")
+
+    require("notify").setup({
+      background_colour = "#000000",
+    })
 
     noice.setup({
       lsp = {

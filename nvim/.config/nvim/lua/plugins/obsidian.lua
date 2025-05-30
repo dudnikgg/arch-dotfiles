@@ -33,13 +33,6 @@ return {
           end,
           opts = { noremap = false, expr = true, buffer = true },
         },
-        -- toggle check-boxes
-        ["<leader>ct"] = {
-          action = function()
-            return require("obsidian").util.toggle_checkbox()
-          end,
-          opts = { buffer = true },
-        },
       },
       completion = {
         nvim_cmp = true,

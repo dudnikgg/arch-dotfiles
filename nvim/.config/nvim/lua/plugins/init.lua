@@ -3,6 +3,7 @@ return {
   require("plugins.noice"),
   require("plugins.which-key"),
   require("plugins.colorscheme"),
+  require("plugins.diagnostic-inline"),
 
   require("plugins.oil"),
   require("plugins.formatter"),

@@ -1,70 +1,259 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    -- Allows extra capabilities provided by blink.cmp
-    { "j-hui/fidget.nvim", opts = {} },
     "saghen/blink.cmp",
   },
   event = { "BufReadPre", "BufNewFile" },
-  config = function()
-    require("mason").setup()
-    require("mason-lspconfig").setup()
-
-    -- NOTE: seems like not needed anymore
-    --
-    -- local capabilities = require("blink.cmp").get_lsp_capabilities() -- Import capabilities from blink.cmp
-    -- vim.lsp.config("*", {
-    --   capabilities = capabilities,
-    -- })
-
-    -- Add other LSP servers as needed, e.g., gopls, eslint, html, etc.
-    vim.lsp.enable("lua_ls")
-    vim.lsp.enable("html")
-    vim.lsp.enable("vue_ls")
-    vim.lsp.enable("ts_ls")
-    vim.lsp.enable("bashls")
-    vim.lsp.enable("cssls")
-    vim.lsp.enable("tailwindcss")
-    vim.lsp.enable("gopls")
-    vim.lsp.enable("emmet_ls")
-    vim.lsp.enable("emmet_language_server")
-    vim.lsp.enable("marksman")
-
-    local vue_ls_share = vim.fn.expand("$MASON/packages/vue-language-server")
-    local vue_plugin_path = vue_ls_share .. "/node_modules/@vue/language-server"
-
-    require("lspconfig").ts_ls.setup({
-      init_options = {
-        plugins = {
-          {
-            name = "@vue/typescript-plugin",
-            location = vue_plugin_path,
-            languages = { "vue" },
+  opts = {
+    servers = {
+      ts_ls = {
+        init_options = {
+          plugins = {
+            {
+              name = "@vue/typescript-plugin",
+              location = vim.fn.stdpath("data")
+                .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+              languages = { "vue" },
+            },
           },
         },
+        filetypes = { "typescript", "javascript", "vue" },
       },
-      filetypes = { "typescript", "javascript", "vue" },
-    })
-
-    -- Configure eash LSP
-    vim.lsp.config("lua_ls", {
-      settings = {
-        ["Lua"] = {
-          diagnostics = {
-            globals = { "vim", "Snacks" },
-          },
-          completion = {
-            callSnippet = "Replace",
-          },
-          workspace = {
-            library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
+      lua_ls = {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim", "Snacks" },
+            },
+            completion = {
+              callSnippet = "Replace",
+            },
+            workspace = {
+              library = {
+                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                [vim.fn.stdpath("config") .. "/lua"] = true,
+              },
             },
           },
         },
       },
+      intelephense = {
+        settings = {
+          intelephense = {
+            stubs = {
+              "amqp",
+              "apache",
+              "apcu",
+              "bcmath",
+              "blackfire",
+              "bz2",
+              "calendar",
+              "cassandra",
+              "com_dotnet",
+              "Core",
+              "couchbase",
+              "crypto",
+              "ctype",
+              "cubrid",
+              "curl",
+              "date",
+              "dba",
+              "decimal",
+              "dom",
+              "ds",
+              "enchant",
+              "Ev",
+              "event",
+              "exif",
+              "fann",
+              "FFI",
+              "ffmpeg",
+              "fileinfo",
+              "filter",
+              "fpm",
+              "ftp",
+              "gd",
+              "gearman",
+              "geoip",
+              "geos",
+              "gettext",
+              "gmagick",
+              "gmp",
+              "gnupg",
+              "grpc",
+              "hash",
+              "http",
+              "ibm_db2",
+              "iconv",
+              "igbinary",
+              "imagick",
+              "imap",
+              "inotify",
+              "interbase",
+              "intl",
+              "json",
+              "judy",
+              "ldap",
+              "leveldb",
+              "libevent",
+              "libsodium",
+              "libxml",
+              "lua",
+              "lzf",
+              "mailparse",
+              "mapscript",
+              "mbstring",
+              "mcrypt",
+              "memcache",
+              "memcached",
+              "meminfo",
+              "meta",
+              "ming",
+              "mongo",
+              "mongodb",
+              "mosquitto-php",
+              "mqseries",
+              "msgpack",
+              "mssql",
+              "mysql",
+              "mysql_xdevapi",
+              "mysqli",
+              "ncurses",
+              "newrelic",
+              "oauth",
+              "oci8",
+              "odbc",
+              "openssl",
+              "parallel",
+              "Parle",
+              "pcntl",
+              "pcov",
+              "pcre",
+              "pdflib",
+              "PDO",
+              "pdo_ibm",
+              "pdo_mysql",
+              "pdo_pgsql",
+              "pdo_sqlite",
+              "pgsql",
+              "Phar",
+              "phpdbg",
+              "posix",
+              "pspell",
+              "pthreads",
+              "radius",
+              "rar",
+              "rdkafka",
+              "readline",
+              "recode",
+              "redis",
+              "Reflection",
+              "regex",
+              "rpminfo",
+              "rrd",
+              "SaxonC",
+              "session",
+              "shmop",
+              "SimpleXML",
+              "snmp",
+              "soap",
+              "sockets",
+              "sodium",
+              "solr",
+              "SPL",
+              "SplType",
+              "SQLite",
+              "sqlite3",
+              "sqlsrv",
+              "ssh2",
+              "standard",
+              "stats",
+              "stomp",
+              "suhosin",
+              "superglobals",
+              "svn",
+              "sybase",
+              "sync",
+              "sysvmsg",
+              "sysvsem",
+              "sysvshm",
+              "tidy",
+              "tokenizer",
+              "uopz",
+              "uv",
+              "v8js",
+              "wddx",
+              "win32service",
+              "winbinder",
+              "wincache",
+              "xcache",
+              "xdebug",
+              "xhprof",
+              "xml",
+              "xmlreader",
+              "xmlrpc",
+              "xmlwriter",
+              "xsl",
+              "xxtea",
+              "yaf",
+              "yaml",
+              "yar",
+              "zend",
+              "Zend OPcache",
+              "ZendCache",
+              "ZendDebugger",
+              "ZendUtils",
+              "zip",
+              "zlib",
+              "zmq",
+              "zookeeper",
+              "wordpress",
+              "woocommerce",
+              "acf-pro",
+              "wordpress-globals",
+              "wp-cli",
+              "genesis",
+              "polylang",
+            },
+            environment = {
+              includePaths = {
+                "/home/dudnikgg/dd-dev/php-stubs/",
+              },
+            },
+            files = {
+              maxSize = 5000000,
+            },
+          },
+        },
+      },
+      html = {
+        filetypes = { "php", "html", "vue" },
+      },
+      vue_ls = {},
+      bashls = {},
+      cssls = {},
+      tailwindcss = {},
+      gopls = {},
+      emmet_ls = {},
+      emmet_language_server = {},
+      marksman = {},
+    },
+  },
+  config = function(_, opts)
+    require("mason").setup()
+    local mason_lspconfig = require("mason-lspconfig")
+
+    -- Ensure Mason to install servers
+    mason_lspconfig.setup({
+      automatic_enable = false,
+      ensure_installed = vim.tbl_keys(opts.servers or {}),
     })
+
+    -- Enable lsp
+    for server, config in pairs(opts.servers) do
+      vim.lsp.config(server, config)
+      vim.lsp.enable(server)
+    end
 
     -- NOTE: LSP Keybidings
     vim.api.nvim_create_autocmd("LspAttach", {
