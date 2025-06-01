@@ -43,7 +43,7 @@
 # resize-overlay-duration = 4s 200ms
 
 font-size = 16
-font-family = Hack Nerd Font Mono
+font-family = MartianMono Nerd Font
 theme = Dracula
 background = "#0E1419"
 background-opacity = 0.8
