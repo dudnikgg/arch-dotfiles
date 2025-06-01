@@ -28,7 +28,9 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       lua = { "stylua" },
-      javascript = { "prettierd", "prettier", stop_after_first = true },
+      javascript = { "eslint" },
+      typescript = { "eslint" },
+      vue = { "eslint" },
       php = { "phpcs", "phpcbf" },
     },
     -- Set default options
@@ -43,6 +45,7 @@ return {
         prepend_args = { "-i", "2" },
       },
     },
+    log_level = vim.log.levels.DEBUG,
   },
   init = function()
     -- If you want the formatexpr, here is the place to set it

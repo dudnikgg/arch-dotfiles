@@ -23,7 +23,7 @@ return {
       virtual_symbol_position = "inline",
 
       ---Highlight tailwind colors, e.g. 'bg-blue-500'
-      enable_tailwind = true,
+      -- enable_tailwind = true,
     })
   end,
 }

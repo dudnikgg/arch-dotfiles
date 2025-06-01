@@ -38,11 +38,7 @@ return {
         nvim_cmp = true,
         min_chars = 2,
       },
-      ui = {
-        -- Disable some things below here because I set these manually for all Markdown files using treesitter
-        checkboxes = {},
-        bullets = {},
-      },
+      ui = { enable = false },
     })
   end,
 }

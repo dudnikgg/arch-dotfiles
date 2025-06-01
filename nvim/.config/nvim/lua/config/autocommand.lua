@@ -56,3 +56,16 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     vim.opt_local.foldlevel = 99 -- Start with all folds open
   end,
 })
+
+-- Open help in a new tab
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "help",
+  command = ":wincmd T",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "css", "vue", "html", "js", "ts" },
+  callback = function()
+    vim.opt_local.iskeyword = "@,48-57,_,192-255"
+  end,
+})

@@ -81,7 +81,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]], opts)
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to clipboard" })
 
 -- Delete without copying
-vim.keymap.set({ "n", "v" }, "<leader>dd", [["_d]])
+-- vim.keymap.set({ "n", "v" }, "<leader>dd", [["_d]])
 vim.keymap.set("n", "x", '"_x', opts)
 
 vim.keymap.set("n", "Q", "<nop>")
@@ -93,10 +93,23 @@ vim.keymap.set("n", "<leader>fp", function()
   print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
 end, { desc = "Copy file path to clipboard" })
 
+-- Search selected text in the current buffer
+vim.keymap.set("v", "<Space>/", function()
+  -- Yank the visually selected text without affecting system clipboard
+  vim.cmd('normal! "vy')
+
+  -- Escape any special characters in the selection for literal search
+  local text = vim.fn.escape(vim.fn.getreg("v"), [[\/.*$^~[]])
+
+  -- Start a search for the literal string
+  vim.fn.setreg("/", text)
+  vim.cmd("normal! n")
+end, { noremap = true, silent = true })
+
 -- Functions to toggle comments in JavaScript
 -- (for use in Vue files, where comment.nvim is not working for me)
--- vim.keymap.set({'n', 'v'}, '<leader>jc', [[:s/^/\/\//g<cr>]], { silent = true })
--- vim.keymap.set({'n', 'v'}, '<leader>jd', [[:s/\/\///g<cr>]], { silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>jc", [[:s/^/\/\//g<cr>]], { silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>jd", [[:s/\/\///g<cr>]], { silent = true })
 
 -- console.log() macro.
 -- Usage: place cursor where you want to insert it then `@l`

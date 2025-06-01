@@ -23,7 +23,7 @@ return {
         settings = {
           Lua = {
             diagnostics = {
-              globals = { "vim", "Snacks" },
+              globals = { "vim" },
             },
             completion = {
               callSnippet = "Replace",
@@ -229,12 +229,12 @@ return {
       html = {
         filetypes = { "php", "html", "vue" },
       },
+      eslint = {},
       vue_ls = {},
       bashls = {},
       cssls = {},
       tailwindcss = {},
       gopls = {},
-      emmet_ls = {},
       emmet_language_server = {},
       marksman = {},
     },
