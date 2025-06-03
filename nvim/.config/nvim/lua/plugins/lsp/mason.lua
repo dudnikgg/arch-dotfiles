@@ -2,10 +2,7 @@ return {
   "williamboman/mason.nvim",
   lazy = false,
   dependencies = {
-    "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    "neovim/nvim-lspconfig",
-    "saghen/blink.cmp",
   },
 
   config = function()
@@ -14,7 +11,7 @@ return {
 
     mason.setup({
       ui = {
-        border = "bold",
+        border = DD.ui.float.border,
         icons = {
           package_installed = "✓",
           package_pending = "➜",

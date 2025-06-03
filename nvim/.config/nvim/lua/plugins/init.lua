@@ -1,38 +1,46 @@
 return {
+  require("plugins.sleuth"), -- Dynamically adjust tabs/spacings for the current buff
 
-  require("plugins.treesitter"),
-  require("plugins.sleuth"),
-  require("plugins.noice"),
-  require("plugins.which-key"),
-  require("plugins.colorscheme"),
-  require("plugins.diagnostic-inline"),
+  -- UI
+  require("plugins.noice"), -- Nice messages and notifications
+  require("plugins.which-key"), -- Shows keys helper ui
+  require("plugins.colorscheme"), -- Color theme
+  require("plugins.todo-comments"),
+  require("plugins.incline"), -- Show opened file name in the right corner
+  require("plugins.twilight"), -- Dimming effect
+  require("plugins.highlight-colors"), -- Adds icon to colors
+  require("plugins.tailwind-tools"), -- Tailwind features, extends tailwindcss lsp
+  require("plugins.diagnostic-inline"), -- Styles for Diagnostic
 
-  require("plugins.oil"),
-  require("plugins.formatter"),
-  require("plugins.fzf-lua"),
-  require("plugins.statusline"),
+  -- Files/search
+  require("plugins.oil"), -- File browser
+  require("plugins.fzf-lua"), -- FZF search, pickers
+  require("plugins.harpoon"), -- Mark files and jump between them
+  require("plugins.statusline"), -- status bar
+  require("plugins.lazygit"), -- Git
 
+  -- Mini modules
   require("plugins.mini-ai"),
   require("plugins.mini-autopair"),
   require("plugins.mini-surround"),
   require("plugins.mini-scope"),
 
-  require("plugins.todo-comments"),
+  -- Other things, code related things
+  require("plugins.treesitter"), -- Syntax highlighting and more
+  require("plugins.formatter"), -- Code formatter
+  require("plugins.flash"), -- Code jumping, better fFtT
+  require("plugins.ufo"), -- Code folding
   require("plugins.mathup"),
-  require("plugins.harpoon"),
-  require("plugins.flash"),
-  require("plugins.incline"),
-  require("plugins.highlight-colors"),
-  require("plugins.ufo"),
-  require("plugins.twilight"),
-  require("plugins.lazygit"),
 
-  require("plugins.lsp.autocompletion"),
-  require("plugins.lsp.mason"),
-  require("plugins.lsp.lsp-config"),
-  require("plugins.lsp.html-css-cmp"),
-  require("plugins.lsp.tailwindcss-tools"),
-
+  -- Obsidian
   require("plugins.obsidian"),
   require("plugins.markdown-preview"),
+
+  -- LSP
+  require("plugins.lsp.lsp"),
+  require("plugins.lsp.mason"),
+
+  -- Autocompletion
+  require("plugins.autocompletion"),
+  require("plugins.html-css-cmp"),
 }

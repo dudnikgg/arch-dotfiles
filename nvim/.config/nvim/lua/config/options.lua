@@ -1,81 +1,99 @@
--- [[ Setting options ]]
--- See `:help vim.opt`
--- For more options, you can see `:help option-list`
-
--- Disable netrw (use if replacing with a modern file explorer)
--- vim.g.loaded_netrw = 0
--- vim.g.loaded_netrwPlugin = 0
--- vim.cmd("let g:netrw_liststyle = 3")
-vim.cmd("let g:netrw_banner = 0 ") -- Hide banner in netrw (if used)
-
--- Border style around floating windows
-vim.o.winborder = "bold"
-
--- Tab size
-vim.opt.tabstop = 2 -- Visual width of tab characters
-vim.opt.softtabstop = 2 -- Spaces inserted when pressing Tab
-vim.opt.shiftwidth = 2 -- Indent width when using >> or <<
-vim.opt.expandtab = true -- Convert tabs to spaces
-
--- Swap and Backup
-vim.opt.swapfile = false -- Don't create swap files
-vim.opt.backup = false -- Don't create backup files
-
--- Line numbers
-vim.opt.number = true -- Show absolute line numbers
-vim.opt.relativenumber = true -- Show relative line numbers
-
-vim.opt.mouse = "a" -- Enable mouse support in all modes
-vim.opt.showmode = false -- Don't show mode in command line (handled by statusline)
-
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.opt.clipboard = "unnamedplus" -- Use system clipboard for all yanks/pastes
-end)
-
--- Enable indentation logic
-vim.opt.autoindent = true -- Copy indent from current line when starting new one
-vim.opt.smartindent = true -- Smart autoindenting for new lines
-
-vim.opt.wrap = false -- Don't wrap long lines
-
-vim.opt.undofile = true -- Enable persistent undo across sessions
-
--- Search behavior
-vim.opt.ignorecase = true -- Case-insensitive searching by default
-vim.opt.smartcase = true -- But case-sensitive if search pattern has uppercase
-vim.opt.incsearch = true -- Show search matches as you type
-vim.opt.inccommand = "split" -- Live preview of :s command in split window
-
-vim.opt.termguicolors = true -- Enable full 24-bit color support
-vim.opt.background = "dark" -- Use colors optimized for dark backgrounds
-
-vim.opt.signcolumn = "yes" -- Always show the sign column (prevents shifting)
-
-vim.opt.updatetime = 250 -- Delay before triggering swap/write events
-vim.opt.timeoutlen = 1000 -- Time to wait for a mapped sequence to complete
-
--- Split behavior
-vim.opt.splitright = true -- Vertical splits open to the right
-vim.opt.splitbelow = true -- Horizontal splits open below
-
--- Whitespace and invisibles
-vim.opt.list = true -- Show invisible characters
-vim.opt.listchars = { -- Set symbols for invisible chars
-  tab = "» ",
-  trail = "·",
-  space = "·",
-  nbsp = "␣",
+local options = {
+  clipboard = "unnamed,unnamedplus", --- Copy-paste between vim and everything else
+  cmdheight = 0, --- Give more space for displaying messages
+  completeopt = "menu,menuone,preview", --- Better autocompletion
+  cursorline = true, --- Highlight of current line
+  emoji = false, --- Fix emoji display
+  expandtab = true, --- Use spaces instead of tabs
+  foldcolumn = "0",
+  foldnestmax = 0,
+  foldlevel = 99, --- Using ufo provider need a large value
+  foldlevelstart = 99, --- Expand all folds by default
+  ignorecase = true, --- Needed for smartcase
+  laststatus = 3, --- Have a global statusline at the bottom instead of one for each window
+  -- Show Whitespaces and other invisible characters
+  list = true, --- Show invisible characters
+  listchars = { tab = "» ", trail = "·", space = "·", nbsp = "␣" }, --- Set symbols for invisible chars
+  mouse = "a", --- Enable mouse
+  number = true, --- Shows current line number
+  pumheight = 10, --- Max num of items in completion menu
+  relativenumber = true, --- Enables relative number
+  scrolloff = 10, --- Always keep space when scrolling to bottom/top edge
+  shiftwidth = 2, --- Change a number of space characters inserted for indentation
+  showtabline = 1, --- Show tab only if there are more than 1 tabs
+  signcolumn = "yes:2", --- Add extra sign column next to line number
+  smartcase = true, --- Uses case in search
+  smartindent = true, --- Makes indenting smart
+  smarttab = true, --- Makes tabbing smarter will realize you have 2 vs 4
+  softtabstop = 2, --- Insert 2 spaces for a tab
+  splitright = true, --- Vertical splits will automatically be to the right
+  swapfile = false, --- Swap not needed
+  tabstop = 2, --- Insert 2 spaces for a tab
+  termguicolors = true, --- Correct terminal colors
+  timeoutlen = 200, --- Faster completion (cannot be lower than 200 because then commenting doesn't work)
+  undofile = true, --- Sets undo to file
+  updatetime = 100, --- Faster completion
+  viminfo = "'1000", --- Increase the size of file history
+  wildignore = "*node_modules/**", --- Don't search inside Node.js modules (works for gutentag)
+  wrap = false, --- Display long lines as just one line
+  writebackup = false, --- Not needed
+  -- Neovim defaults
+  autoindent = true, --- Good auto indent
+  backspace = "indent,eol,start", --- Making sure backspace works
+  backup = false, --- Recommended by coc
+  --- Concealed text is completely hidden unless it has a custom replacement character defined (needed for dynamically showing tailwind classes)
+  conceallevel = 2,
+  concealcursor = "", --- Set to an empty string to expand tailwind class when on cursorline
+  encoding = "utf-8", --- The encoding displayed
+  errorbells = false, --- Disables sound effect for errors
+  fileencoding = "utf-8", --- The encoding written to file
+  incsearch = true, --- Start searching before pressing enter
+  showmode = false, --- Don't show things like -- INSERT -- anymore
+  winborder = "bold", -- Border style around floating windows
 }
 
-vim.opt.cursorline = true -- Highlight the current line
-vim.opt.scrolloff = 10 -- Keep 10 lines visible above/below cursor
+local globals = {
+  mapleader = " ", --- Map leader key to SPC
+  maplocalleader = ",", --- Map local leader key to comma
+  speeddating_no_mappings = 1, --- Disable default mappings for speeddating
+}
 
-vim.opt.confirm = true -- Ask to save changes instead of failing commands
+vim.opt.shortmess:append("c")
+vim.opt.formatoptions:remove("c")
+vim.opt.formatoptions:remove("r")
+vim.opt.formatoptions:remove("o")
+vim.opt.fillchars:append("stl: ")
+vim.opt.fillchars:append("eob: ")
+vim.opt.fillchars:append("fold: ")
+vim.opt.fillchars:append("foldopen: ")
+vim.opt.fillchars:append("foldsep: ")
+vim.opt.fillchars:append("foldclose:")
+vim.opt.fillchars:append("vert:▕")
+vim.opt.fillchars:append("vertleft:▕")
 
-vim.o.conceallevel = 0 -- set conceal level for obsidian plugin
+-- Set the diagnostic config with all icons
+vim.diagnostic.config({
+  severity_sort = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "󰅚 ",
+      [vim.diagnostic.severity.WARN] = "󰀪 ",
+      [vim.diagnostic.severity.INFO] = "󰋽 ",
+      [vim.diagnostic.severity.HINT] = "󰌶 ",
+    },
+  },
+  virtual_text = false, -- Specify Enable virtual text for diagnostics
+  virtual_lines = {
+    current_line = true,
+  },
+  underline = true, -- Specify Underline diagnostics
+  update_in_insert = false, -- Keep diagnostics active in insert mode
+})
 
-vim.opt.backspace = { "start", "eol", "indent" } -- Allow backspacing over everything in insert mode
+for k, v in pairs(options) do
+  vim.opt[k] = v
+end
+
+for k, v in pairs(globals) do
+  vim.g[k] = v
+end

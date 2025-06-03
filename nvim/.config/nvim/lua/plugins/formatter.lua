@@ -2,25 +2,7 @@ return {
   "stevearc/conform.nvim",
   event = { "BufWritePre", "BufReadPre", "BufNewFile" },
   cmd = { "ConformInfo", "ConformFormat" },
-  keys = {
-    {
-      "<leader>cf",
-      function()
-        require("conform").format({ async = true, lsp_fallback = true })
-        vim.cmd("redraw")
-      end,
-      mode = { "n", "v" },
-      desc = "Format buffer (conform)",
-    },
-    {
-      "<leader>F",
-      function()
-        vim.lsp.buf.format()
-      end,
-      mode = "n",
-      desc = "Format buffer (LSP only)",
-    },
-  },
+
   -- This will provide type hinting with LuaLS
   ---@module "conform"
   ---@type conform.setupOpts
@@ -50,5 +32,7 @@ return {
   init = function()
     -- If you want the formatexpr, here is the place to set it
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+    vim.api.nvim_exec_autocmds("User", { pattern = "ConformLoaded" })
   end,
 }

@@ -20,7 +20,7 @@ require("lazy").setup({
   spec = require("plugins"), -- for barrel-like structure of plugins
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "dracula" } },
+  install = { colorscheme = { DD.colorscheme } },
   -- automatically check for plugin updates
   checker = { enabled = true },
 })

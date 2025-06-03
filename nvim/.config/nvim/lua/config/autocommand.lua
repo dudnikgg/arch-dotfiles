@@ -35,12 +35,23 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
-local Prettier = vim.api.nvim_create_augroup("Prettier", { clear = true })
-vim.api.nvim_create_autocmd("bufWritePost", {
-  group = Prettier,
-  pattern = "*.vue",
-  command = "silent !node_modules/.bin/prettier % -w",
-})
+-- Disable diagnostics in node_modules (0 is current buffer only)
+vim.api.nvim_create_autocmd(
+  { "BufRead", "BufNewFile" },
+  { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)" }
+)
+
+-- Enable spell checking for certain file types
+vim.api.nvim_create_autocmd(
+  { "BufRead", "BufNewFile" },
+  { pattern = { "*.txt", "*.md", "*.tex" }, command = "setlocal spell" }
+)
+
+-- Show `` in specific files
+vim.api.nvim_create_autocmd(
+  { "BufRead", "BufNewFile" },
+  { pattern = { "*.txt", "*.md", "*.json" }, command = "setlocal conceallevel=0" }
+)
 
 -- Enable JSON folding
 -- `zc` to close a fold
@@ -67,5 +78,51 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "css", "vue", "html", "js", "ts" },
   callback = function()
     vim.opt_local.iskeyword = "@,48-57,_,192-255"
+  end,
+})
+
+-- Attach specific keybindings in which-key for specific filetypes
+local present, _ = pcall(require, "which-key")
+if not present then
+  return
+end
+local _, pwk = pcall(require, "plugins.which-key.setup")
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*.md",
+  callback = function()
+    pwk.attach_markdown(0)
+  end,
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "package.json" },
+  callback = function()
+    pwk.attach_npm(0)
+  end,
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*test.js", "*test.ts", "*test.tsx", "*spec.ts", "*spec.tsx" },
+  callback = function()
+    pwk.attach_jest(0)
+  end,
+})
+
+-- File Type Plugin Lazy Loading
+local lazy = vim.api.nvim_create_augroup("lazy", {})
+vim.api.nvim_create_autocmd("UIEnter", {
+  group = lazy,
+  pattern = { "*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx", "*.test.js", "*.spec.js" },
+  callback = function()
+    print("lazy loading lua plugins")
+    require("lazy.loader").load({
+      plugins = { "neotest" },
+    })
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "css", "vue", "html", "js", "ts" },
+  callback = function()
+    vim.opt_local.iskeyword = "@,_,-"
   end,
 })
