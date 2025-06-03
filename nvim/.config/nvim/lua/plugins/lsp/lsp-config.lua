@@ -229,10 +229,18 @@ return {
       html = {
         filetypes = { "php", "html", "vue" },
       },
-      eslint = {},
+      eslint = {
+        settings = {
+          experimental = {
+            useFlatConfig = false,
+          },
+        },
+      },
       vue_ls = {},
       bashls = {},
-      cssls = {},
+      cssls = {
+        settings = { css = { lint = { unknownAtRules = "ignore" } } },
+      },
       tailwindcss = {},
       gopls = {},
       emmet_language_server = {},
@@ -340,6 +348,22 @@ return {
       end,
     })
 
+    -- Eslint lsp format on save
+    local base_on_attach = vim.lsp.config.eslint.on_attach
+    vim.lsp.config("eslint", {
+      on_attach = function(client, bufnr)
+        if not base_on_attach then
+          return
+        end
+
+        base_on_attach(client, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "LspEslintFixAll",
+        })
+      end,
+    })
+
     -- Set the diagnostic config with all icons
     vim.diagnostic.config({
       severity_sort = true,
@@ -351,7 +375,7 @@ return {
           [vim.diagnostic.severity.HINT] = "󰌶 ",
         },
       },
-      virtual_text = true, -- Specify Enable virtual text for diagnostics
+      virtual_text = false, -- false for diagnostice plugin. Specify Enable virtual text for diagnostics
       underline = true, -- Specify Underline diagnostics
       update_in_insert = false, -- Keep diagnostics active in insert mode
     })

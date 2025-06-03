@@ -31,6 +31,10 @@ return {
             node_decremental = "<Backspace>",
           },
         },
+        matchup = {
+          enable = true, -- mandatory, false will disable the whole extension
+          disable = {}, -- optional, list of language that will be disabled
+        },
       })
 
       -- Disable hiding the "```" in markdown

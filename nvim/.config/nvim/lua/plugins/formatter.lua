@@ -28,9 +28,9 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       lua = { "stylua" },
-      javascript = { "eslint" },
-      typescript = { "eslint" },
-      vue = { "eslint" },
+      javascript = { "eslint_d" },
+      typescript = { "eslint_d" },
+      vue = { "eslint_d" },
       php = { "phpcs", "phpcbf" },
     },
     -- Set default options

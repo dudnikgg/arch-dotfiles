@@ -11,8 +11,6 @@ vim.cmd("let g:netrw_banner = 0 ") -- Hide banner in netrw (if used)
 -- Border style around floating windows
 vim.o.winborder = "bold"
 
-vim.opt.guifont = "Monospace Bold"
-
 -- Tab size
 vim.opt.tabstop = 2 -- Visual width of tab characters
 vim.opt.softtabstop = 2 -- Spaces inserted when pressing Tab
@@ -34,9 +32,9 @@ vim.opt.showmode = false -- Don't show mode in command line (handled by statusli
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
--- vim.schedule(function()
---   vim.opt.clipboard = "unnamedplus" -- Use system clipboard for all yanks/pastes
--- end)
+vim.schedule(function()
+  vim.opt.clipboard = "unnamedplus" -- Use system clipboard for all yanks/pastes
+end)
 
 -- Enable indentation logic
 vim.opt.autoindent = true -- Copy indent from current line when starting new one
@@ -69,6 +67,7 @@ vim.opt.list = true -- Show invisible characters
 vim.opt.listchars = { -- Set symbols for invisible chars
   tab = "» ",
   trail = "·",
+  space = "·",
   nbsp = "␣",
 }
 

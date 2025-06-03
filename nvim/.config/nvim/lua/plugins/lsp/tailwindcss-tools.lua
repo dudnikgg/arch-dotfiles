@@ -15,5 +15,5 @@ return {
       inline_symbol = " ", -- only used in inline mode
       debounce = 200, -- in milliseconds, only applied in insert mode
     },
-  }, -- your configuration
+  },
 }

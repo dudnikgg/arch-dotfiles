@@ -110,8 +110,3 @@ end, { noremap = true, silent = true })
 -- (for use in Vue files, where comment.nvim is not working for me)
 vim.keymap.set({ "n", "v" }, "<leader>jc", [[:s/^/\/\//g<cr>]], { silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>jd", [[:s/\/\///g<cr>]], { silent = true })
-
--- console.log() macro.
--- Usage: place cursor where you want to insert it then `@l`
-local console_log_macro = vim.api.nvim_replace_termcodes('yoconsole.log("")<Esc>bllhpla, <Esc>p<Esc>', true, true, true)
-vim.fn.setreg("l", console_log_macro)

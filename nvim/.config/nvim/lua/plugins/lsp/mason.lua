@@ -14,7 +14,7 @@ return {
 
     mason.setup({
       ui = {
-        border = "rounded",
+        border = "bold",
         icons = {
           package_installed = "✓",
           package_pending = "➜",
@@ -28,7 +28,7 @@ return {
         "prettierd", -- prettier formatter
         "stylua", -- lua formatter
         "beautysh",
-        "eslint",
+        "eslint_d",
         -- { 'eslint_d', version = '13.1.2' },
         "phpcs",
         "phpcbf",
