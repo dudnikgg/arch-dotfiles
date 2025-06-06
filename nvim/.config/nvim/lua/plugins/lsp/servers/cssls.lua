@@ -1,5 +1,13 @@
 local M = {}
 
-M.cssls = {}
+M.cssls = {
+  settings = {
+    css = {
+      lint = {
+        unknownAtRules = "ignore",
+      },
+    },
+  },
+}
 
 return M

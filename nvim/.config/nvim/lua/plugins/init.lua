@@ -11,6 +11,7 @@ return {
   require("plugins.highlight-colors"), -- Adds icon to colors
   require("plugins.tailwind-tools"), -- Tailwind features, extends tailwindcss lsp
   require("plugins.diagnostic-inline"), -- Styles for Diagnostic
+  require("plugins.gitsigns"), -- Git things
 
   -- Files/search
   require("plugins.oil"), -- File browser
@@ -30,7 +31,7 @@ return {
   require("plugins.formatter"), -- Code formatter
   require("plugins.flash"), -- Code jumping, better fFtT
   require("plugins.ufo"), -- Code folding
-  require("plugins.mathup"),
+  -- require("plugins.mathup"),
 
   -- Obsidian
   require("plugins.obsidian"),

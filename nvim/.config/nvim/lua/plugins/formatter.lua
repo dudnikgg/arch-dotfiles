@@ -1,27 +1,21 @@
 return {
   "stevearc/conform.nvim",
-  event = { "BufWritePre", "BufReadPre", "BufNewFile" },
-  cmd = { "ConformInfo", "ConformFormat" },
+  event = { "BufWritePre" },
+  cmd = { "ConformInfo" },
 
-  -- This will provide type hinting with LuaLS
   ---@module "conform"
   ---@type conform.setupOpts
   opts = {
-    -- Define your formatters
     formatters_by_ft = {
       lua = { "stylua" },
-      javascript = { "eslint_d" },
-      typescript = { "eslint_d" },
-      vue = { "eslint_d" },
-      php = { "phpcs", "phpcbf" },
+      vue = {},
+      php = { "phpcbf" },
+      json = { "jq" },
     },
-    -- Set default options
-    default_format_opts = {
-      lsp_format = "fallback",
-    },
-    -- Set up format-on-save
+    -- default_format_opts = {
+    --   lsp_format = "fallback",
+    -- },
     format_on_save = { timeout_ms = 500 },
-    -- Customize formatters
     formatters = {
       shfmt = {
         prepend_args = { "-i", "2" },
@@ -30,9 +24,6 @@ return {
     log_level = vim.log.levels.DEBUG,
   },
   init = function()
-    -- If you want the formatexpr, here is the place to set it
-    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-
     vim.api.nvim_exec_autocmds("User", { pattern = "ConformLoaded" })
   end,
 }

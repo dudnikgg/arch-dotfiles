@@ -14,10 +14,6 @@ return {
 
     -- use a release tag to download pre-built binaries
     version = "1.*",
-    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-    -- build = 'cargo build --release',
-    -- If you use nix, you can build from source using latest nightly rust with:
-    -- build = 'nix run .#build-plugin',
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -37,6 +33,8 @@ return {
       keymap = {
         preset = "super-tab",
         -- ["<C-l>"] = { "accept", "fallback" },
+        ["<C-j>"] = { "select_next", "fallback" },
+        ["<C-k>"] = { "select_prev", "fallback" },
       },
 
       appearance = {
@@ -49,7 +47,24 @@ return {
 
       -- (Default) Only show the documentation popup when manually triggered
       completion = {
-        documentation = { auto_show = false },
+        prefetch_on_insert = true,
+        show_on_accept_on_trigger_character = false,
+        documentation = {
+          auto_show = false,
+          treesitter_highlighting = true,
+          window = {
+            min_width = 10,
+            max_width = 60,
+            max_height = 20,
+            border = DD.ui.float.border,
+            winblend = vim.o.pumblend,
+            scrollbar = true,
+            direction_priority = {
+              menu_north = { "e", "w", "n", "s" },
+              menu_south = { "e", "w", "s", "n" },
+            },
+          },
+        },
         menu = {
           draw = {
             components = {
@@ -95,6 +110,30 @@ return {
           ["html-css"] = {
             name = "html-css",
             module = "blink.compat.source",
+            score_offset = 0,
+          },
+          lsp = {
+            score_offset = 3,
+            min_keyword_length = function(ctx)
+              return ctx.trigger.kind == "manual" and 0 or 2
+            end,
+            fallbacks = {},
+            max_items = 10,
+          },
+          path = {
+            score_offset = 2,
+            min_keyword_length = 3,
+            fallbacks = {},
+          },
+          snippets = {
+            score_offset = 1,
+            min_keyword_length = 2,
+            fallbacks = {},
+          },
+          buffer = {
+            score_offset = 1,
+            min_keyword_length = 3,
+            fallbacks = {},
           },
         },
       },
@@ -104,7 +143,23 @@ return {
       -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
       --
       -- See the fuzzy documentation for more information
-      fuzzy = { implementation = "prefer_rust_with_warning" },
+      fuzzy = {
+        -- sorts = { "exact", "score", "sort_text" },
+        implementation = "rust",
+        sorts = {
+          -- Deprioritize 'emmet_ls' suggestions. Good when working with vue/svelte/jsx components
+          function(a, b)
+            vim.print(a.client_name)
+            if (a.client_name == nil or b.client_name == nil) or (a.client_name == b.client_name) then
+              return
+            end
+            return b.client_name == "emmet_ls"
+          end,
+          -- default sorts
+          "score",
+          "sort_text",
+        },
+      },
     },
     opts_extend = { "sources.default" },
   },

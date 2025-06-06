@@ -181,6 +181,7 @@ M.intelephense = {
       environment = {
         includePaths = {
           "/home/dudnikgg/dd-dev/php-stubs/",
+          "/home/dudnikgg/dd-dev/localsites/codix/l-polimil/wp-plugins/codix-blocks/",
         },
       },
       files = {

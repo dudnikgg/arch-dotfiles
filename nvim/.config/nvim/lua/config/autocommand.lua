@@ -75,9 +75,11 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "css", "vue", "html", "js", "ts" },
+  group = augroup,
+  pattern = { "php", "css", "vue", "html", "javascript", "typescript" },
   callback = function()
-    vim.opt_local.iskeyword = "@,48-57,_,192-255"
+    -- Set 'iskeyword' to exclude '-' and '_'
+    vim.opt_local.iskeyword = "@,48-57,192-255"
   end,
 })
 
@@ -94,12 +96,14 @@ vim.api.nvim_create_autocmd("BufEnter", {
     pwk.attach_markdown(0)
   end,
 })
+
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "package.json" },
   callback = function()
     pwk.attach_npm(0)
   end,
 })
+
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*test.js", "*test.ts", "*test.tsx", "*spec.ts", "*spec.tsx" },
   callback = function()
@@ -108,21 +112,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- File Type Plugin Lazy Loading
-local lazy = vim.api.nvim_create_augroup("lazy", {})
 vim.api.nvim_create_autocmd("UIEnter", {
-  group = lazy,
+  group = augroup,
   pattern = { "*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx", "*.test.js", "*.spec.js" },
   callback = function()
     print("lazy loading lua plugins")
     require("lazy.loader").load({
       plugins = { "neotest" },
     })
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "css", "vue", "html", "js", "ts" },
-  callback = function()
-    vim.opt_local.iskeyword = "@,_,-"
   end,
 })

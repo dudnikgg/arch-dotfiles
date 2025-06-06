@@ -17,6 +17,18 @@ return {
 
         -- Use icons defined in the diagnostic configuration
         use_icons_from_diagnostic = true,
+
+        -- Time (in milliseconds) to throttle updates while moving the cursor
+        -- Increase this value for better performance if your computer is slow
+        -- or set to 0 for immediate updates and better visual
+        throttle = 0,
+
+        -- Minimum message length before wrapping to a new line
+        softwrap = 30,
+
+        overflow = {
+          padding = 5,
+        },
       },
     })
   end,

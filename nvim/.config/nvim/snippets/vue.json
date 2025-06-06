@@ -1,0 +1,23 @@
+{
+  "Single File Component": {
+    "prefix": "sfc",
+    "body": [
+      "<script setup lang=\"ts\">",
+      "defineProps<{",
+      "  ${1:propName}: ${2:string}",
+      "}>()",
+      "</script>",
+      "",
+      "<template>",
+      "  <div>",
+      "    ${3:Hello} {{ $1 }}",
+      "  </div>",
+      "</template>",
+      "",
+      "<style scoped>",
+      "  $0",
+      "</style>"
+    ],
+    "description": "Vue SFC with props and tabstops"
+  }
+}

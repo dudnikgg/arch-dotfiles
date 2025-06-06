@@ -176,10 +176,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local diagnostics_enabled = true
     vim.keymap.set("n", "<leader>lx", function()
       diagnostics_enabled = not diagnostics_enabled
-      vim.diagnostic.config({
-        virtual_text = diagnostics_enabled,
-        underline = diagnostics_enabled,
-      })
+      require("tiny-inline-diagnostic").toggle()
     end, { desc = "Toggle LSP Diagnostics" })
   end,
 })
@@ -197,7 +194,6 @@ vim.api.nvim_create_autocmd("User", {
 
     -- stylua: ignore
     local keymaps = {
-      { "q",           function() require("fzf-lua").files() end,            "[F]ind [F]iles in Project Directory" },
       { "<leader>ff",  function() require("fzf-lua").files() end,            "[F]ind [F]iles in Project Directory" },
       { "<leader>fz",  function() require("fzf-lua").live_grep_resume() end, "[F]ind by [G]repping inside Project Directory" },
       { "<leader>fgd", function() require("fzf-lua").git_diff() end,         "[F]ind [G]it [D]iff" },
@@ -280,11 +276,11 @@ vim.api.nvim_create_autocmd("User", {
 
     map("<leader>ha", function()
       harpoon:list():add()
-    end, "n", { desc = "[H]arpoon [A]dd file to the list" })
+    end, "[H]arpoon [A]dd file to the list", "n")
 
     map("<leader>hd", function()
       harpoon:list():remove()
-    end, "n", { desc = "[H]arpoon [D]elete file from the list" })
+    end, "[H]arpoon [D]elete file from the list", "n")
 
     map("<C-e>", function()
       harpoon.ui:toggle_quick_menu(harpoon:list())

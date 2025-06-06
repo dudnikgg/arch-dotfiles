@@ -5,7 +5,7 @@ local options = {
   cursorline = true, --- Highlight of current line
   emoji = false, --- Fix emoji display
   expandtab = true, --- Use spaces instead of tabs
-  foldcolumn = "0",
+  foldcolumn = "1",
   foldnestmax = 0,
   foldlevel = 99, --- Using ufo provider need a large value
   foldlevelstart = 99, --- Expand all folds by default
@@ -21,7 +21,7 @@ local options = {
   scrolloff = 10, --- Always keep space when scrolling to bottom/top edge
   shiftwidth = 2, --- Change a number of space characters inserted for indentation
   showtabline = 1, --- Show tab only if there are more than 1 tabs
-  signcolumn = "yes:2", --- Add extra sign column next to line number
+  signcolumn = "yes:1", --- Add extra sign column next to line number
   smartcase = true, --- Uses case in search
   smartindent = true, --- Makes indenting smart
   smarttab = true, --- Makes tabbing smarter will realize you have 2 vs 4
@@ -83,9 +83,6 @@ vim.diagnostic.config({
     },
   },
   virtual_text = false, -- Specify Enable virtual text for diagnostics
-  virtual_lines = {
-    current_line = true,
-  },
   underline = true, -- Specify Underline diagnostics
   update_in_insert = false, -- Keep diagnostics active in insert mode
 })
