@@ -46,7 +46,7 @@ font-size = 16
 font-family = MartianMono Nerd Font
 theme = Dracula
 background = "#0E1419"
-background-opacity = 0.8
+background-opacity = 0.95
 gtk-adwaita = false
 
 # Keybindings
