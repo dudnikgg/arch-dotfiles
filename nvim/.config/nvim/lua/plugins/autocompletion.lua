@@ -47,8 +47,6 @@ return {
 
       -- (Default) Only show the documentation popup when manually triggered
       completion = {
-        prefetch_on_insert = true,
-        show_on_accept_on_trigger_character = false,
         documentation = {
           auto_show = false,
           treesitter_highlighting = true,
@@ -114,9 +112,7 @@ return {
           },
           lsp = {
             score_offset = 3,
-            min_keyword_length = function(ctx)
-              return ctx.trigger.kind == "manual" and 0 or 2
-            end,
+            min_keyword_length = 0,
             fallbacks = {},
             max_items = 10,
           },

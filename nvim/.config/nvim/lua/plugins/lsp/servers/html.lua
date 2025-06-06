@@ -4,7 +4,6 @@ M.html = {
   filetypes = {
     "php",
     "html",
-    "vue",
   },
 }
 
