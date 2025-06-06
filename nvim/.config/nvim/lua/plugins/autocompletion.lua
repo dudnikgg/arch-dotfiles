@@ -149,7 +149,6 @@ return {
         sorts = {
           -- Deprioritize 'emmet_ls' suggestions. Good when working with vue/svelte/jsx components
           function(a, b)
-            vim.print(a.client_name)
             if (a.client_name == nil or b.client_name == nil) or (a.client_name == b.client_name) then
               return
             end
