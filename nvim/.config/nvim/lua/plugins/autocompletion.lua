@@ -42,14 +42,14 @@ return {
 
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
-        nerd_font_variant = "mono",
+        nerd_font_variant = "normal",
       },
 
       -- (Default) Only show the documentation popup when manually triggered
       completion = {
         documentation = {
           auto_show = false,
-          treesitter_highlighting = true,
+          treesitter_highlighting = false,
           window = {
             min_width = 10,
             max_width = 60,
@@ -61,6 +61,13 @@ return {
               menu_north = { "e", "w", "n", "s" },
               menu_south = { "e", "w", "s", "n" },
             },
+          },
+        },
+        list = {
+          max_items = 20,
+          selection = {
+            preselect = true,
+            auto_insert = false,
           },
         },
         menu = {
@@ -96,6 +103,11 @@ return {
                 end,
               },
             },
+            columns = {
+              { "label", gap = 1 },
+              { "kind_icon", gap = 1 },
+              { "source_name" },
+            },
           },
         },
       },
@@ -112,24 +124,26 @@ return {
           },
           lsp = {
             score_offset = 3,
-            min_keyword_length = 0,
+            min_keyword_length = 1,
             fallbacks = {},
             max_items = 10,
           },
           path = {
             score_offset = 2,
-            min_keyword_length = 3,
+            min_keyword_length = 1,
             fallbacks = {},
           },
           snippets = {
             score_offset = 1,
             min_keyword_length = 2,
             fallbacks = {},
+            max_items = 2,
           },
           buffer = {
             score_offset = 1,
             min_keyword_length = 3,
             fallbacks = {},
+            max_items = 2,
           },
         },
       },
@@ -141,7 +155,7 @@ return {
       -- See the fuzzy documentation for more information
       fuzzy = {
         -- sorts = { "exact", "score", "sort_text" },
-        implementation = "rust",
+        implementation = "prefer_rust_with_warning",
         sorts = {
           -- Deprioritize 'emmet_ls' suggestions. Good when working with vue/svelte/jsx components
           function(a, b)
