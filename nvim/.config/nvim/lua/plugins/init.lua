@@ -6,7 +6,6 @@ return {
   require("plugins.which-key"), -- Shows keys helper ui
   require("plugins.colorscheme"), -- Color theme
   require("plugins.todo-comments"),
-  require("plugins.incline"), -- Show opened file name in the right corner
   require("plugins.twilight"), -- Dimming effect
   require("plugins.highlight-colors"), -- Adds icon to colors
   require("plugins.tailwind-tools"), -- Tailwind features, extends tailwindcss lsp
