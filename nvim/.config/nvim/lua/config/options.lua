@@ -1,6 +1,6 @@
 local options = {
   clipboard = "unnamed,unnamedplus", --- Copy-paste between vim and everything else
-  cmdheight = 0, --- Give more space for displaying messages
+  cmdheight = 2, --- Give more space for displaying messages
   completeopt = "menu,menuone,preview", --- Better autocompletion
   cursorline = true, --- Highlight of current line
   emoji = false, --- Fix emoji display

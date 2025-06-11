@@ -54,6 +54,9 @@ source /usr/share/nvm/init-nvm.sh
 bindkey -e
 bindkey "^[h" backward-char     # alt-h
 bindkey "^[l" forward-char      # alt-l
+bindkey "^[^H" backward-word     # alt+ctrl+h
+bindkey "^[^L" forward-word      # alt+ctrl+l
+bindkey -r "^[^J" # unmap this
 bindkey "^[w" backward-delete-word # alt+w
 bindkey '^[a' beginning-of-line # alt-a
 bindkey "^[e" end-of-line # alt+e
@@ -144,6 +147,10 @@ alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 alias dsa='docker stop $(docker ps -q)'
 alias ctop='docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest' 
 
+function killp() {
+  ps aux | fzf | awk '{print $2}' | xargs kill -9
+}
+
 # Zen profiles
 # alias zdudnikgg='/usr/bin/zen-browser -P dudnikgg &>/dev/null &'
 # alias zinnocode='/usr/bin/zen-browser -P innocode &>/dev/null &'
@@ -187,3 +194,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+fastfetch

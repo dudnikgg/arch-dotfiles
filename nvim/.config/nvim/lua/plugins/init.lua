@@ -16,7 +16,7 @@ return {
   require("plugins.oil"), -- File browser
   require("plugins.fzf-lua"), -- FZF search, pickers
   require("plugins.harpoon"), -- Mark files and jump between them
-  require("plugins.statusline"), -- status bar
+  require("plugins.mini-statusline"), -- status bar
   require("plugins.lazygit"), -- Git
 
   -- Mini modules
@@ -39,6 +39,7 @@ return {
   -- LSP
   require("plugins.lsp.lsp"),
   require("plugins.lsp.mason"),
+  require("plugins.lsp.typescript-better-errors"),
 
   -- Autocompletion
   require("plugins.autocompletion"),

@@ -1,6 +1,9 @@
 local M = {}
 
 M.vue_ls = {
+  init_options = {
+    vue = { hybridMode = true },
+  },
   before_init = function(_, config)
     if config.init_options and config.init_options.typescript and config.init_options.typescript.tsdk == "" then
       local root_dir = config.root_dir

@@ -1,0 +1,68 @@
+local M = {}
+
+-- local mason_packages = vim.fn.expand("$MASON/packages")
+--
+-- local function get_vue_ls_config()
+--   local vue_ls_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
+--
+--   return vim.fn.isdirectory(vue_ls_path) == 1
+--       and {
+--         name = "@vue/typescript-plugin",
+--         location = vue_ls_path,
+--         languages = { "vue" },
+--         configNamespace = "typescript",
+--         enableForWorkspaceTypeScriptVersions = true,
+--       }
+--     or {}
+-- end
+--
+-- M.vtsls = {
+--   filetypes = { "typescript", "javascript", "vue" },
+--   settings = {
+--     javascript = {
+--       preferences = {
+--         -- importModuleSpecifier = "non-relative",
+--       },
+--       inlayHints = {
+--         functionLikeReturnTypes = { enabled = true },
+--         parameterNames = { enabled = "all" },
+--         variableTypes = { enabled = true },
+--       },
+--     },
+--     typescript = {
+--       preferences = {
+--         -- importModuleSpecifier = "non-relative",
+--       },
+--     },
+--     vtsls = {
+--       autoUseWorkspaceTsdk = true,
+--       experimental = {
+--         -- Inlay hint truncation.
+--         maxInlayHintLength = 30,
+--         -- For completion performance.
+--         completion = {
+--           enableServerSideFuzzyMatch = true,
+--           entriesLimit = 50,
+--         },
+--       },
+--       tsserver = {
+--         globalPlugins = {},
+--       },
+--     },
+--   },
+--   before_init = function(params, config)
+--     local result = vim.system({ "npm", "query", "#vue" }, { cwd = params.workspaceFolders[1].name, text = true }):wait()
+--     if result.stdout ~= "[]" then
+--       local vuePluginConfig = {
+--         name = "@vue/typescript-plugin",
+--         location = get_vue_ls_config(),
+--         languages = { "vue" },
+--         configNamespace = "typescript",
+--         enableForWorkspaceTypeScriptVersions = true,
+--       }
+--       table.insert(config.settings.vtsls.tsserver.globalPlugins, vuePluginConfig)
+--     end
+--   end,
+-- }
+
+return M
