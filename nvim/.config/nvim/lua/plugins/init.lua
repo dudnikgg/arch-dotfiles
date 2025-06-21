@@ -11,6 +11,7 @@ return {
   require("plugins.tailwind-tools"), -- Tailwind features, extends tailwindcss lsp
   require("plugins.diagnostic-inline"), -- Styles for Diagnostic
   require("plugins.gitsigns"), -- Git things
+  -- require("plugins.fyler"), -- Nice filetree to pair with oil
 
   -- Files/search
   require("plugins.oil"), -- File browser

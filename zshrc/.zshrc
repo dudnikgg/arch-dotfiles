@@ -195,4 +195,3 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-fastfetch

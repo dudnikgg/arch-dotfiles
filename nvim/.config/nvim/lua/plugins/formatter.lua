@@ -11,6 +11,7 @@ return {
       vue = {},
       php = { "phpcbf" },
       json = { "jq" },
+      yaml = { "yamlfmt" },
     },
     -- default_format_opts = {
     --   lsp_format = "fallback",

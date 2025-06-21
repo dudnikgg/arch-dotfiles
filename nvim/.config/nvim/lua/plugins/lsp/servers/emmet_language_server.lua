@@ -1,5 +1,5 @@
 local M = {}
 
-M.emmet_language_server = {}
+-- M.emmet_language_server = {}
 
 return M

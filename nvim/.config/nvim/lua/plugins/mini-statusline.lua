@@ -41,8 +41,8 @@ return {
           local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
           local diagnostics = custom_diagnostics()
 
-          local filename = vim.fn.expand("%:~:.")
-
+          local filename = MiniStatusline.section_filename({ trunc_width = 140 })
+          local modified = vim.bo.modified and " " or ""
           local raw_fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 50 })
           local filetype = raw_fileinfo:match("^%S+%s+%S+") or raw_fileinfo
           local diff = MiniStatusline.section_diff({ trunc_width = 75 })
@@ -62,7 +62,7 @@ return {
               hl = "MiniStatuslineFileinfo",
               strings = {
                 "%=",
-                filename,
+                filename .. modified,
                 "%=",
               },
             },
@@ -99,7 +99,7 @@ return {
   highlight MiniStatuslineDiagWarn    guifg=#f1fa8c guibg=#282a36
   highlight MiniStatuslineGitBranch guibg=#f1fa8c guifg=#282a36
   highlight MiniStatuslineDiff      guibg=#ffb86c guifg=#282a36
-  highlight MiniStatuslineFileType  guibg=#50fa7b guifg=#282a36
+  highlight MiniStatuslineFileType  guibg=#bd93f9 guifg=#282a36
   highlight MiniStatuslinePlaceholder guibg=#282a36 guifg=#282a36
 ]])
   end,

@@ -42,29 +42,24 @@ return {
 
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
-        nerd_font_variant = "normal",
+        nerd_font_variant = "mono",
       },
 
       -- (Default) Only show the documentation popup when manually triggered
       completion = {
         documentation = {
-          auto_show = false,
-          treesitter_highlighting = false,
+          auto_show = true,
+          treesitter_highlighting = true,
           window = {
             min_width = 10,
             max_width = 60,
             max_height = 20,
             border = DD.ui.float.border,
-            winblend = vim.o.pumblend,
             scrollbar = true,
-            direction_priority = {
-              menu_north = { "e", "w", "n", "s" },
-              menu_south = { "e", "w", "s", "n" },
-            },
           },
         },
         list = {
-          max_items = 20,
+          max_items = 50,
           selection = {
             preselect = true,
             auto_insert = false,
@@ -120,13 +115,13 @@ return {
           ["html-css"] = {
             name = "html-css",
             module = "blink.compat.source",
-            score_offset = 0,
+            score_offset = 1,
           },
           lsp = {
-            score_offset = 3,
-            min_keyword_length = 1,
+            score_offset = 4,
+            min_keyword_length = 0,
             fallbacks = {},
-            max_items = 10,
+            max_items = 20,
           },
           path = {
             score_offset = 2,
@@ -154,20 +149,43 @@ return {
       --
       -- See the fuzzy documentation for more information
       fuzzy = {
-        -- sorts = { "exact", "score", "sort_text" },
+        sorts = { "exact", "sort_text", "score" },
         implementation = "prefer_rust_with_warning",
-        sorts = {
+        -- Frecency tracks the most recently/frequently used items and boosts the score of the item
+        -- Note, this does not apply when using the Lua implementation.
+        use_frecency = false,
 
-          -- Deprioritize 'emmet_ls' suggestions. Good when working with vue/svelte/jsx components
-          function(a, b)
-            if (a.client_name == nil or b.client_name == nil) or (a.client_name == b.client_name) then
-              return
-            end
-            return b.client_name == "emmet_ls" or b.client_name == "emmet_language_server"
-          end,
-          "exact",
-          "score",
-        },
+        -- Proximity bonus boosts the score of items matching nearby words
+        -- Note, this does not apply when using the Lua implementation.
+        use_proximity = false,
+        -- sorts = {
+
+        -- Deprioritize 'emmet_ls' suggestions. Good when working with vue/svelte/jsx components
+        -- function(a, b)
+        --   local a_client = a.client_name
+        --   local b_client = b.client_name
+        --
+        --   if not a_client or not b_client or a_client == b_client then
+        --     return
+        --   end
+        --
+        --   -- Prioritize vue_ls
+        --   if a_client == "vue_ls" and b_client ~= "vue_ls" then
+        --     return true
+        --   elseif b_client == "vue_ls" and a_client ~= "vue_ls" then
+        --     return false
+        --   end
+        --
+        --   -- Deprioritize emmet_ls
+        --   if a_client == "emmet_ls" or a_client == "emmet_language_server" then
+        --     return false
+        --   elseif b_client == "emmet_ls" or b_client == "emmet_language_server" then
+        --     return true
+        --   end
+        -- end,
+        --   "score",
+        --   "exact",
+        -- },
       },
     },
     opts_extend = { "sources.default" },

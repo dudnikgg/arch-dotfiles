@@ -305,3 +305,9 @@ end, with_desc("Open [M]ason"))
 vim.keymap.set("n", "<leader>L", function()
   vim.cmd("Lazy")
 end, with_desc("Open [L]azy"))
+
+-- NOTE:
+-- Fyles keybinds
+-- vim.keymap.set("n", "<leader>e", function()
+--   vim.cmd("Fyler kind=split:right")
+-- end, with_desc("Open [F]yler"))
