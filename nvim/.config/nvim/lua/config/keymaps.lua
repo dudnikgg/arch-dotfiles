@@ -143,7 +143,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       { "gd",         require("fzf-lua").lsp_definitions,     "Go to Definitions" },
       { "gT",         require("fzf-lua").lsp_typedefs,        "Go to Type Definition" },
       { "gi",         require("fzf-lua").lsp_implementations, "Go to Implementations" },
-      { "gR",         require("fzf-lua").lsp_references,      "Go to References" },
+      { "gr",         require("fzf-lua").lsp_references,      "Go to References" },
 
       -- Actions
       { "<leader>ca", vim.lsp.buf.code_action,                "Code Actions",             { "n", "v" } },
@@ -154,7 +154,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       { "<leader>dq", require("fzf-lua").loclist,             "Diagnostics Quickfix List" },
 
       -- Documentation & Help
-      { "<leader>dk", function() vim.lsp.buf.hover() end,     "Hover Documentation", },
+      { "<leader>k", function() vim.lsp.buf.hover() end,     "Hover Documentation", },
       { "<C-h>",      vim.lsp.buf.signature_help,             "Signature Help",           { "i" } },
 
       -- LSP Tools
