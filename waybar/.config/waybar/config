@@ -1,6 +1,6 @@
 {
   "layer": "top",
-  "height": 35,
+  "height": 20,
   "margin-top": 0,
   "margin-left": 0,
   "margin-bottom": 0,
@@ -8,32 +8,23 @@
   "spacing": 0,
   "modules-left": [
     "hyprland/workspaces",
-    //"hyprland/window",
-    "tray"
+    "tray",
+    "hyprland/window",
   ],
-  "modules-center": ["custom/docker", "custom/updates", "group/sensors"],
-  "modules-right": [
+  "modules-center": [
     "network",
     "pulseaudio",
-    "group/system",
-    "custom/notification"
+    "custom/docker",
+    "custom/updates",
+    "custom/notification",
   ],
-  "group/system": {
-    "orientation": "inherit",
-    // "drawer": {
-    //   "transition-duration": 500,
-    //   "children-class": "drawer-child",
-    //   "transition-left-to-right": false
-    // },
-    "modules": ["hyprland/language", "clock"]
-  },
+  "modules-right": [
+    "group/sensors",
+    "hyprland/language",
+    "clock"
+  ],
   "group/sensors": {
     "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 500,
-      "children-class": "drawer-child",
-      "transition-left-to-right": false
-    },
     "modules": ["cpu", "disk", "memory", "temperature"]
   },
   "tray": {
@@ -45,7 +36,7 @@
     "format": "{} {icon}",
     "return-type": "json",
     "format-icons": {
-      "has-updates": " ", //"
+      "has-updates": " ",
       "updated": " "
     },
     "exec-if": "which waybar-module-pacman-updates",
@@ -74,19 +65,19 @@
   },
   "hyprland/language": {
     "format": "{}",
-    "format-en": "eng",
-    "format-uk": "ukr"
+    "format-en": "EN",
+    "format-uk": "UK"
   },
   "hyprland/window": {
     "format": "",
     "icon": true,
-    //"max-length": 100,
+    "max-length": 100,
     "separate-outputs": true
   },
   "clock": {
     "timezone": "Europe/Kyiv",
-    "tooltip-format": "{:%A, %d %B}",
-    "format": "{:%R}"
+    "tooltip-format": "{:}",
+    "format": "{:%A, %d %B, %R}"
     //"tooltip": false,
   },
   "network": {
