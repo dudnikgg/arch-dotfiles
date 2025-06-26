@@ -41,7 +41,8 @@ tooltip {
 #pulseaudio,
 #custom-updates,
 #custom-notification,
-#custom-docker {
+#custom-docker,
+#window {
   background: #000;
   font-weight: 700;
   margin: 4px;
@@ -49,25 +50,19 @@ tooltip {
   border-radius: 0px;
 }
 
-#sensors #cpu,
-#sensors #memory,
-#sensors #temperature {
-  margin: 2px 6px;
-}
-
 #sensors #cpu {
   color: @cyan;
-  padding-right: 2px;
+  padding-right: 10px;
 }
 
 #sensors #memory {
   color: @cyan;
-  padding-left: 3px;
+  padding-right: 10px;
 }
 
 #sensors #temperature {
   color: @cyan;
-  padding-left: 3px;
+  padding-right: 0px;
 }
 
 #sensors #temperature.critical {
@@ -76,7 +71,7 @@ tooltip {
 
 #sensors #disk {
   color: @cyan;
-  padding: 0 3px;
+  padding-right: 10px;
 }
 
 #workspaces button {

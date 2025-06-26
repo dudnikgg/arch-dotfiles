@@ -1,6 +1,6 @@
 {
   "layer": "top",
-  "height": 20,
+  "height": 40,
   "margin-top": 0,
   "margin-left": 0,
   "margin-bottom": 0,
@@ -9,7 +9,7 @@
   "modules-left": [
     "hyprland/workspaces",
     "tray",
-    "hyprland/window",
+    "group/sensors",
   ],
   "modules-center": [
     "network",
@@ -19,7 +19,6 @@
     "custom/notification",
   ],
   "modules-right": [
-    "group/sensors",
     "hyprland/language",
     "clock"
   ],
