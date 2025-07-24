@@ -195,3 +195,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+
+# opencode
+export PATH=/home/dudnikgg/bin:$PATH

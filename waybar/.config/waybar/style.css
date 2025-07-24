@@ -50,7 +50,7 @@ tooltip {
   border-radius: 0px;
 }
 
-#sensors #cpu {
+#sensors #custom-cpu-top {
   color: @cyan;
   padding-right: 10px;
 }

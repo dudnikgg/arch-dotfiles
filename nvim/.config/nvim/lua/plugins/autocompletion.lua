@@ -149,7 +149,7 @@ return {
       --
       -- See the fuzzy documentation for more information
       fuzzy = {
-        sorts = { "exact", "score", "sort_text" },
+        -- sorts = { "exact", "score", "sort_text" },
         implementation = "prefer_rust_with_warning",
         -- Frecency tracks the most recently/frequently used items and boosts the score of the item
         -- Note, this does not apply when using the Lua implementation.

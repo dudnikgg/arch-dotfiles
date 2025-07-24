@@ -12,13 +12,12 @@ return {
   require("plugins.diagnostic-inline"), -- Styles for Diagnostic
   require("plugins.gitsigns"), -- Git things
   require("plugins.quick-todo"), -- Quik todo list
-  -- require("plugins.fyler"), -- Nice filetree to pair with oil
 
   -- Files/search
   require("plugins.oil"), -- File browser
   require("plugins.fzf-lua"), -- FZF search, pickers
+  require("plugins.fyler"), -- Nice filetree to pair with oil
   require("plugins.harpoon"), -- Mark files and jump between them
-  require("plugins.mini-statusline"), -- status bar
   require("plugins.lazygit"), -- Git
 
   -- Mini modules
@@ -26,6 +25,7 @@ return {
   require("plugins.mini-autopair"),
   require("plugins.mini-surround"),
   require("plugins.mini-scope"),
+  require("plugins.mini-statusline"), -- status bar
 
   -- Other things, code related things
   require("plugins.treesitter"), -- Syntax highlighting and more
@@ -41,7 +41,6 @@ return {
   -- LSP
   require("plugins.lsp.lsp"),
   require("plugins.lsp.mason"),
-  require("plugins.lsp.typescript-better-errors"),
 
   -- Autocompletion
   require("plugins.autocompletion"),

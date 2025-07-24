@@ -192,16 +192,17 @@ vim.api.nvim_create_autocmd("User", {
       vim.keymap.set(mode, keys, func, { desc = desc })
     end
 
+    local fzf = require("fzf-lua")
     -- stylua: ignore
     local keymaps = {
-      { "<leader>ff",  function() require("fzf-lua").files() end,            "[F]ind [F]iles in Project Directory" },
-      { "<leader>fz",  function() require("fzf-lua").live_grep_resume() end, "[F]ind by [G]repping inside Project Directory" },
-      { "<leader>fgd", function() require("fzf-lua").git_diff() end,         "[F]ind [G]it [D]iff" },
-      { "<leader>fgb", function() require("fzf-lua").git_branches() end,     "[F]ind [G]it [B]ranches" },
-      { "<leader>fgc", function() require("fzf-lua").git_commits() end,      "[F]ind [G]it [C]ommits" },
-      { "<leader>fw",  function() require("fzf-lua").grep_cword() end,       "[F]ind current [W]ord" },
-      { "<leader>/",   function() require("fzf-lua").lgrep_curbuf() end,     "[/] Live grep the current buffer" },
-      { "<leader>fb",  function() require("fzf-lua").builtin() end,          "[F]ind [B]uiltin" },
+      { "<leader>ff",  function() fzf.files() end,            "[F]ind [F]iles in Project Directory" },
+      { "<leader>fz",  function() fzf.live_grep({resume=true}) end, "[F]ind by [G]repping inside Project Directory" },
+      { "<leader>fgd", function() fzf.git_diff() end,         "[F]ind [G]it [D]iff" },
+      { "<leader>fgb", function() fzf.git_branches() end,     "[F]ind [G]it [B]ranches" },
+      { "<leader>fgc", function() fzf.git_commits() end,      "[F]ind [G]it [C]ommits" },
+      { "<leader>fw",  function() fzf.grep_cword() end,       "[F]ind current [W]ord" },
+      { "<leader>/",   function() fzf.lgrep_curbuf() end,     "[/] Live grep the current buffer" },
+      { "<leader>fb",  function() fzf.builtin() end,          "[F]ind [B]uiltin" },
     }
 
     for _, km in ipairs(keymaps) do
@@ -308,6 +309,6 @@ end, with_desc("Open [L]azy"))
 
 -- NOTE:
 -- Fyles keybinds
--- vim.keymap.set("n", "<leader>e", function()
---   vim.cmd("Fyler kind=split:right")
--- end, with_desc("Open [F]yler"))
+vim.keymap.set("n", "<leader>e", function()
+  vim.cmd("Fyler kind=split:right")
+end, with_desc("Open [F]yler"))

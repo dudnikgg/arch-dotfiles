@@ -24,7 +24,7 @@
   ],
   "group/sensors": {
     "orientation": "inherit",
-    "modules": ["cpu", "disk", "memory", "temperature"]
+    "modules": ["custom/cpu-top", "disk", "memory", "temperature"]
   },
   "tray": {
     "icon-size": 12,
@@ -95,10 +95,11 @@
     "on-click": "pavucontrol",
     "ignored-sinks": ["Easy Effects Sink"]
   },
-  "cpu": {
-    "interval": 1,
-    "format": "󰍛 {usage}%",
-    "tooltip": false
+  "custom/cpu-top": {
+    "exec": "~/.config/waybar/custom/cpu-top.sh",
+    "return-type": "json",
+    "interval": 5,
+    "tooltip": true
   },
   "memory": {
     "format": " {}%"

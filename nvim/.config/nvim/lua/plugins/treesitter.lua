@@ -1,9 +1,47 @@
 return {
   {
+    "numToStr/Comment.nvim",
+    config = function()
+      local prehook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
+      require("Comment").setup({
+        padding = true,
+        sticky = true,
+        ignore = "^$",
+        toggler = {
+          line = "gcc",
+          block = "gbc",
+        },
+        opleader = {
+          line = "gc",
+          block = "gb",
+        },
+        extra = {
+          above = "gcO",
+          below = "gco",
+          eol = "gcA",
+        },
+        mappings = {
+          basic = true,
+          extra = true,
+          extended = false,
+        },
+        pre_hook = prehook,
+        post_hook = nil,
+      })
+    end,
+    event = "BufReadPre",
+    lazy = false,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     branch = "master",
     lazy = false,
     dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
       -- auto insert closing tags
       {
         "windwp/nvim-ts-autotag",
@@ -15,27 +53,27 @@ return {
     },
     build = ":TSUpdate",
     config = function()
-      local configs = require("nvim-treesitter.configs")
+      local configs = require("nvim-treesitter")
 
-      configs.setup({
-        ensure_installed = "all",
-        highlight = { enable = true },
-        indent = { enable = true },
-
+      require("nvim-treesitter.configs").setup({
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = "<Enter>",
-            node_incremental = "<Enter>",
-            scope_incremental = false,
-            node_decremental = "<Backspace>",
+            init_selection = "<CR>",
+            scope_incremental = "<S-CR>",
+            node_incremental = "<CR>",
+            node_decremental = "<S-TAB>",
           },
         },
-        matchup = {
-          enable = true, -- mandatory, false will disable the whole extension
-          disable = {}, -- optional, list of language that will be disabled
-        },
+        ensure_installed = { "vue", "html", "css", "typescript", "javascript", "lua", "yaml" },
+        highlight = { enable = true },
+        indent = { enable = true },
+        autotag = { enable = true },
       })
+      vim.g.skip_ts_context_commentstring_module = true
+      require("ts_context_commentstring").setup({})
+
+      -- vim.g.skip_ts_context_commentstring_module = true
 
       -- Disable hiding the "```" in markdown
       -- require("vim.treesitter.query").set(
@@ -50,12 +88,12 @@ return {
       -- )
     end,
   },
-  "JoosepAlviste/nvim-ts-context-commentstring",
+
   {
-    "numToStr/Comment.nvim",
+    "JoosepAlviste/nvim-ts-context-commentstring",
     config = function()
-      require("Comment").setup({
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      require("ts_context_commentstring").setup({
+        enable_autocmd = false,
       })
     end,
   },
