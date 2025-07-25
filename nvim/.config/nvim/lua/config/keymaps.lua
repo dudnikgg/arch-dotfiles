@@ -8,8 +8,8 @@ end
 -- General keymaps
 
 -- save, quit
-vim.keymap.set("n", "<leader>w", ":w<cr>", opts)
-vim.keymap.set("n", "<leader>q", ":q<cr>", opts)
+vim.keymap.set("n", "<leader>w", ":w<cr>", with_desc("[W]rite buffer"))
+vim.keymap.set("n", "<leader>q", ":q<cr>", with_desc("[Q]uit buffer"))
 
 -- Go to start/end of the line
 vim.keymap.set({ "n", "v" }, "gh", "^", with_desc("[G]o to the beginning line"))
@@ -21,23 +21,24 @@ vim.keymap.set("v", "gl", "$h", with_desc("[G]o to the end of the line"))
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+-- NOTE: Used for resizing
 -- TIP: Disable arrow keys in normal mode
-vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
+-- vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
+-- vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
+-- vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
+-- vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
 -- Split Navigation
 -- See `:help wincmd` for a list of all window commands
 --
 -- split window vertically
-vim.keymap.set("n", "<leader>sv", "<C-w>v", with_desc("[S]plit window [V]ertically"))
+vim.keymap.set("n", "<leader>sv", "<C-w>v", with_desc("Split window [V]ertically"))
 -- split window horizontally
-vim.keymap.set("n", "<leader>sh", "<C-w>s", with_desc("[S]plit window [H]orizontally"))
+vim.keymap.set("n", "<leader>sh", "<C-w>s", with_desc("Split window [H]orizontally"))
 -- make split windows equal width & height
-vim.keymap.set("n", "<leader>se", "<C-w>=", with_desc("Make [S]plits [E]qual size"))
+vim.keymap.set("n", "<leader>se", "<C-w>=", with_desc("Make Splits [E]qual size"))
 -- close current split window
-vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", with_desc("[S]plit e[X]it"))
+vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", with_desc("Split e[X]it"))
 
 -- Resize with arrows
 vim.keymap.set("n", "<down>", ":resize -2<CR>", opts)
@@ -52,12 +53,13 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", opts) -- Move to the split below
 vim.keymap.set("n", "<C-h>", "<C-w>h", opts) -- Move to the left split
 vim.keymap.set("n", "<C-l>", "<C-w>l", opts) -- Move to the right split
 
+-- NOTE: Not Used
 -- Tabs
-vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>") --open new tab
-vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>") --close current tab
-vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>") --go to next
-vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>") --go to pre
-vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>") --open current tab in new tab
+-- vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>") --open new tab
+-- vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>") --close current tab
+-- vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>") --go to next
+-- vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>") --go to pre
+-- vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>") --open current tab in new tab
 
 -- Move line in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts) -- moves lines down in visual mode
@@ -135,15 +137,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set(mode, keys, func, { buffer = buf, desc = "LSP: " .. desc })
     end
 
+    local fzf = require("fzf-lua")
     -- stylua: ignore
     local keymaps = {
 
       -- Navigation
-      { "gD",         vim.lsp.buf.declaration,                "Go to Declaration" },
-      { "gd",         require("fzf-lua").lsp_definitions,     "Go to Definitions" },
-      { "gT",         require("fzf-lua").lsp_typedefs,        "Go to Type Definition" },
-      { "gi",         require("fzf-lua").lsp_implementations, "Go to Implementations" },
-      { "gr",         require("fzf-lua").lsp_references,      "Go to References" },
+      { "gD",         vim.lsp.buf.declaration, "Go to Declaration" },
+      { "gd",         fzf.lsp_definitions,     "Go to Definitions" },
+      { "gT",         fzf.lsp_typedefs,        "Go to Type Definition" },
+      { "gi",         fzf.lsp_implementations, "Go to Implementations" },
+      { "gr",         fzf.lsp_references,      "Go to References" },
 
       -- Actions
       { "<leader>ca", vim.lsp.buf.code_action,                "Code Actions",             { "n", "v" } },
@@ -151,21 +154,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
       -- Diagnostics
       { "<leader>ds", vim.diagnostic.open_float,              "Show Line Diagnostics" },
-      { "<leader>dq", require("fzf-lua").loclist,             "Diagnostics Quickfix List" },
+      { "<leader>dq", fzf.loclist,             "Diagnostics Quickfix List" },
 
       -- Documentation & Help
       { "<leader>k", function() vim.lsp.buf.hover() end,     "Hover Documentation", },
-      { "<C-h>",      vim.lsp.buf.signature_help,             "Signature Help",           { "i" } },
+      { "<C-i>", function() vim.lsp.buf.signature_help() end, "Signature Help", { "i" } },
 
       -- LSP Tools
       { "<leader>rs", ":LspRestart<CR>",                      "Restart LSP" },
-      {
-        "<leader>th",
-        function()
-          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }))
-        end,
-        "Toggle Inlay Hints",
-      },
     }
 
     for _, km in ipairs(keymaps) do
@@ -212,6 +208,73 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 -- NOTE:
+-- Gitsigns keymaps
+vim.api.nvim_create_autocmd("User", {
+  group = vim.api.nvim_create_augroup("GitsignsConfig", {}),
+  callback = function()
+    local function map(keys, func, desc, mode)
+      mode = mode or "n"
+      vim.keymap.set(mode, keys, func, { desc = desc })
+    end
+
+    local ok, gitsigns = pcall(require, "gitsigns")
+    if not ok then
+      return
+    end
+
+    map("]c", function()
+      if vim.wo.diff then
+        vim.cmd.normal({ "]c", bang = true })
+      else
+        gitsigns.nav_hunk("next")
+      end
+    end, "Next [G]it hunk", { "n" })
+
+    map("[c", function()
+      if vim.wo.diff then
+        vim.cmd.normal({ "[c", bang = true })
+      else
+        gitsigns.nav_hunk("prev")
+      end
+    end, "Prev [G]it hunk", { "n" })
+
+    -- Actions
+    -- map("n", "<leader>hs", gitsigns.stage_hunk)
+    -- map("n", "<leader>hr", gitsigns.reset_hunk)
+
+    -- map("v", "<leader>hs", function()
+    --   gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+    -- end)
+
+    -- map("v", "<leader>hr", function()
+    --   gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+    -- end)
+
+    map("<leader>gp", gitsigns.preview_hunk, "[P]review Git hunk", { "n" })
+    map("<leader>gi", gitsigns.preview_hunk_inline, "[I]nline preview Git hunk ", { "n" })
+
+    -- map("n", "<leader>hb", function()
+    --   gitsigns.blame_line({ full = true })
+    -- end)
+
+    map("<leader>gd", gitsigns.diffthis, "[D]iff Git hunk", { "n" })
+
+    map("<leader>gD", function()
+      gitsigns.diffthis("~")
+    end, "[D]iff Git against parent", { "n" })
+
+    map("<leader>gQ", function()
+      gitsigns.setqflist("all")
+    end, "[Q]uickfix Git hunks all to list", { "n" })
+    map("<leader>gq", gitsigns.setqflist, "[Q]uickfix Git hunks to list", { "n" })
+
+    -- Toggles
+    map("<leader>tb", gitsigns.toggle_current_line_blame, "[B]lame toggle line", { "n" })
+    map("<leader>td", gitsigns.toggle_word_diff, "[D]iff toggle word", { "n" })
+  end,
+})
+
+-- NOTE:
 -- Flash keymaps
 vim.api.nvim_create_autocmd("User", {
   pattern = "FlashLoaded",
@@ -228,9 +291,9 @@ vim.api.nvim_create_autocmd("User", {
     end
 
     map("<C-s>", flash.jump, "Flash", { "n", "x", "o" })
-    map("<C-S-S>", flash.treesitter, "Flash Treesitter", { "n", "x", "o" })
-    map("rf", flash.remote, "Remote Flash", "o")
-    map("Rf", flash.treesitter_search, "Treesitter Search", { "o", "x" })
+    -- map("<C-S-S>", flash.treesitter, "Flash Treesitter", { "n", "x", "o" })
+    -- map("rf", flash.remote, "Remote Flash", "o")
+    -- map("Rf", flash.treesitter_search, "Treesitter Search", { "o", "x" })
     map("<C-s>", flash.toggle, "Toggle Flash Search", "c")
   end,
 })

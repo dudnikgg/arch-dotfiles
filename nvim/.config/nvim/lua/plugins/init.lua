@@ -45,4 +45,5 @@ return {
   -- Autocompletion
   require("plugins.autocompletion"),
   require("plugins.html-css-cmp"),
+  require("plugins.copilot"),
 }

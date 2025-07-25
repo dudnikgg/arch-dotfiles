@@ -9,10 +9,7 @@ return {
   },
   {
     "saghen/blink.cmp",
-    -- optional: provides snippets for the snippet source
-    -- dependencies = { 'rafamadriz/friendly-snippets' },
-
-    -- use a release tag to download pre-built binaries
+    dependencies = { "fang2hou/blink-copilot" },
     version = "1.*",
 
     ---@module 'blink.cmp'
@@ -110,32 +107,38 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { "lsp", "path", "snippets", "buffer", "html-css" },
+        default = { "snippets", "lsp", "copilot", "path", "buffer", "html-css" },
         providers = {
-          ["html-css"] = {
-            name = "html-css",
-            module = "blink.compat.source",
-            score_offset = 1,
-          },
-          lsp = {
-            score_offset = 4,
-            min_keyword_length = 0,
-            fallbacks = {},
-            max_items = 20,
-          },
-          path = {
-            score_offset = 2,
-            min_keyword_length = 1,
-            fallbacks = {},
-          },
           snippets = {
-            score_offset = 1,
             min_keyword_length = 2,
             fallbacks = {},
             max_items = 2,
+            score_offset = 100,
           },
+          lsp = {
+            min_keyword_length = 0,
+            fallbacks = {},
+            max_items = 3,
+            score_offset = 50,
+          },
+          copilot = {
+            name = "copilot",
+            module = "blink-copilot",
+            async = true,
+            max_items = 2,
+            score_offset = 0,
+          },
+          ["html-css"] = {
+            name = "html-css",
+            module = "blink.compat.source",
+          },
+
+          path = {
+            min_keyword_length = 1,
+            fallbacks = {},
+          },
+
           buffer = {
-            score_offset = 1,
             min_keyword_length = 3,
             fallbacks = {},
             max_items = 2,
