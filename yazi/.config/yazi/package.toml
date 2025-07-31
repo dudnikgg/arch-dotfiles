@@ -18,5 +18,7 @@ use = "ndtoan96/ouch"
 rev = "2496cd9"
 hash = "5b9dea47776a30946cfbf83232d18fb1"
 
-[flavor]
-deps = []
+[[flavor.deps]]
+use = "whispcat/tokyo-night-moon"
+rev = "746f562"
+hash = "2cff2c25663791bf61d8b8b4a4b707e6"
