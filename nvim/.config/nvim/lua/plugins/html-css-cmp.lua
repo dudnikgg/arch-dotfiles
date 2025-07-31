@@ -18,7 +18,7 @@ return {
       hover = {
         bind = "K",
         wrap = true,
-        border = "none",
+        border = DD.ui.float.border,
         position = "cursor",
       },
     },

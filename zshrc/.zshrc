@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
@@ -19,8 +12,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Load completions
 autoload -U compinit && compinit
 
-# Add in Powerlevel10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit ice atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone"
@@ -33,6 +24,7 @@ zstyle ':completion:*' menu no
 
 zinit cdreplay -q
 
+eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 eval "$(fzf --zsh)"
@@ -82,6 +74,7 @@ setopt hist_find_no_dups
 WORDCHARS='_'
 
 # aliases
+alias cd="z"
 alias cdd="cd ~/dd-dev/"
 alias p=pnpm
 alias g=git
@@ -198,3 +191,6 @@ esac
 
 # opencode
 export PATH=/home/dudnikgg/bin:$PATH
+
+# opencode
+export PATH=/home/dudnikgg/.opencode/bin:$PATH

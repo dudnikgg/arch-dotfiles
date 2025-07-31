@@ -42,30 +42,37 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-font-size = 18
-font-family = MartianMono Nerd Font
-theme = Dracula
-background = "#0E1419"
+font-size = 14
+# font-family = MartianMono Nerd Font
+font-family = Maple Mono
+# theme = Dracula
+theme = tokyonight_moon
+# background = "#0E1419"
 background-opacity = 0.95
 gtk-adwaita = false
 
+maximize = true
+shell-integration = zsh
+shell-integration-features = no-cursor,no-title
+cursor-style-blink = false
+
+confirm-close-surface = false
+
 # Keybindings
-# keybind = alt+d=new_split:right
-# keybind = alt+x=new_split:down
+keybind = alt+shift+f=toggle_fullscreen
 
-# keybind = alt+h=goto_split:left
-# keybind = alt+j=goto_split:down
-# keybind = alt+k=goto_split:up
-# keybind = alt+l=goto_split:right
+keybind = alt+|=new_split:right
+keybind = alt+-=new_split:down
 
-# keybind = alt+h=goto_split:left
-# keybind = alt+j=goto_split:down
-# keybind = alt+k=goto_split:up
-# keybind = alt+l=goto_split:right
+keybind = alt+q=close_surface
+
+keybind = alt+h=goto_split:left
+keybind = alt+j=goto_split:down
+keybind = alt+k=goto_split:up
+keybind = alt+l=goto_split:right
 
 keybind = ctrl+alt+c=copy_to_clipboard
 keybind = ctrl+alt+v=paste_from_clipboard
 keybind = alt+shift+n=new_window
 keybind = alt+shift+t=new_tab
 keybind = alt+ctrl+,=open_config
-keybind = alt+shift+w=close_surface

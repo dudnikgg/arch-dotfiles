@@ -118,14 +118,14 @@ return {
           lsp = {
             min_keyword_length = 0,
             fallbacks = {},
-            max_items = 3,
+            max_items = 10,
             score_offset = 50,
           },
           copilot = {
             name = "copilot",
             module = "blink-copilot",
             async = true,
-            max_items = 2,
+            max_items = 1,
             score_offset = 0,
           },
           ["html-css"] = {
