@@ -52,10 +52,11 @@ bindkey -r "^[^J" # unmap this
 bindkey "^[w" backward-delete-word # alt+w
 bindkey '^[a' beginning-of-line # alt-a
 bindkey "^[e" end-of-line # alt+e
-bindkey "^[[A" history-beginning-search-backward # 
-bindkey "^[[B" history-beginning-search-forward # 
+# bindkey "^[[A" history-beginning-search-backward # 
+# bindkey "^[[B" history-beginning-search-forward # 
 bindkey "^[k" history-beginning-search-backward # alt-k
 bindkey "^[j" history-beginning-search-forward # alt-j
+
 
 # Options
 HISTSIZE=5000

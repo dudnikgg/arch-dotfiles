@@ -10,8 +10,11 @@ return {
   require("plugins.highlight-colors"), -- Adds icon to colors
   require("plugins.tailwind-tools"), -- Tailwind features, extends tailwindcss lsp
   require("plugins.diagnostic-inline"), -- Styles for Diagnostic
+  -- require("plugins.quick-todo"), -- Quik todo list
+
+  -- Git
   require("plugins.gitsigns"), -- Git things
-  require("plugins.quick-todo"), -- Quik todo list
+  require("plugins.neogit"), -- Git integration
 
   -- Files/search
   require("plugins.oil"), -- File browser

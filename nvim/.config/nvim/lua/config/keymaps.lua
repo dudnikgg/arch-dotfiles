@@ -208,6 +208,32 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 -- NOTE:
+-- Neogit and gitdiff
+vim.api.nvim_create_autocmd("User", {
+  group = vim.api.nvim_create_augroup("NeogitKeymaps", {}),
+  pattern = "VeryLazy",
+  callback = function()
+    local function map(keys, func, desc, mode)
+      mode = mode or "n"
+      vim.keymap.set(mode, keys, func, { desc = desc })
+    end
+
+    local neogit = require("neogit")
+    -- stylua: ignore
+    local keymaps = {
+      { "<leader>gs",  function() neogit.open() end,            "[N]eogit Git Status" },
+      { "<leader>gc",  ":Neogit commit<CR>", "[N]eogit Git Commit" },
+      { "<leader>gp", ":Neogit pull<CR>",         "[N]eogit Git Pull" },
+      { "<leader>gP", ":Neogit push<CR>",     "[N]eogit Git Push" },
+    }
+
+    for _, km in ipairs(keymaps) do
+      map(km[1], km[2], km[3])
+    end
+  end,
+})
+
+-- NOTE:
 -- Gitsigns keymaps
 vim.api.nvim_create_autocmd("User", {
   group = vim.api.nvim_create_augroup("GitsignsConfig", {}),
