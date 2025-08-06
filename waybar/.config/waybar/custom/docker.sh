@@ -13,12 +13,13 @@ total=$(docker ps -a -q | wc -l)
 
 # Get names of running containers for tooltip
 if [ "$running" -gt 0 ]; then
-    # Format container names with dots on the same line as names
     container_names=$(docker ps --format '{{.Names}}' | sed 's/^/• /')
-    # Properly escape for JSON
     tooltip=$(echo -e "$container_names\n\n$running running of $total total containers" | sed ':a;N;$!ba;s/\n/\\n/g')
+    css_class="running"
 else
     tooltip="No running containers ($total total containers)"
+    css_class="stopped"
 fi
 
-echo "{\"text\": \"󰡨 ${running}/${total}\", \"tooltip\": \"$tooltip\", \"class\": \"running\"}"
+echo "{\"text\": \"󰡨 ${running}/${total}\", \"tooltip\": \"$tooltip\", \"class\": \"$css_class\"}"
+

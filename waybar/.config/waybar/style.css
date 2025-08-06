@@ -1,126 +1,134 @@
-@import url("./colors.css");
+@define-color background rgba(76, 86, 106, 0.8);
+@define-color bgc #1a1b26;
+/* bluebyt bg */
+@define-color background-alt #2e3440;
+@define-color foreground #c0caf5;
+@define-color inactive #6f7787;
+@define-color text-muted #d8dee9;
+@define-color red #f7768e;
+@define-color green #9ece6a;
+@define-color blue #7aa2f7;
+@define-color cyan #7dcfff;
+@define-color purple #bb9af7;
+@define-color orange #e0af68;
+
+@define-color selection_background #283457;
+@define-color selection_foreground #c0caf5;
+@define-color active_selection_background #7aa2f7;
+@define-color active_selection_foreground #16161e;
+
+
 * {
   border: none;
   border-radius: 0;
-  font-weight: 400;
-  padding: 0;
-  margin: 0;
-  font-family: FontAwesome, MartianMono Nerd Font;
+  font-family: "Maple Mono", "MartianMono Nerd Font";
   font-size: 11px;
   min-height: 0;
 }
+
 window#waybar {
-  opacity: 1;
-  padding: 0;
-  margin: 0;
-  /* background: rgba(255,255,255, 0.15); */
-  background: transparent;
+  background: rgba(26, 27, 38, 0.3);
   color: @foreground;
-  /* border-bottom: 1px solid @purple; */
 }
 
 .modules-left,
 .modules-center,
 .modules-right {
-  background: transparent;
-  margin: 0px 20px;
+  margin: 0 5px;
 }
 
 tooltip {
-  background-color: @background-darker;
-  border: 1px solid @purple;
-  padding: 10px 10px;
-  font-size: 12px;
+  background-color: @background-alt;
+  border: 1px solid @foreground;
+  padding: 8px;
+  border-radius: 8px;
+  color: @foreground;
 }
 
+/* === Workspaces === */
+#workspaces {
+  background: @bgc;
+  margin: 4px;
+  padding: 2px;
+  border-radius: 16px;
+}
+
+#workspaces button {
+  padding: 0px 5px;
+  margin: 2px 3px;
+  border-radius: 16px;
+  background-color: @selection-background;
+  color: @selection_foreground;
+  transition: all 0.3s ease-in-out;
+}
+
+#workspaces button.active {
+  color: @active_selection_foreground;
+  background-color: @active_selection_background;
+  border-radius: 16px;
+  min-width: 30px;
+  background-size: 400% 400%;
+  transition: all 0.3s ease-in-out;
+}
+
+/* === Modules === */
 #clock,
-#language,
-#tray,
-#sensors,
-#network,
 #pulseaudio,
+#network,
+#custom-docker,
 #custom-updates,
 #custom-notification,
-#custom-docker,
-#window {
-  background: #000;
-  font-weight: 700;
-  margin: 4px;
-  padding: 2px 10px;
-  border-radius: 0px;
+#language,
+#sensors,
+#disks {
+  background-color: @background-alt;
+  border-radius: 16px;
+  margin: 7px 3px;
+  padding: 0px 20px;
+  font-weight: 800;
 }
 
+/* === Special Module Colors === */
 #sensors #custom-cpu-top {
-  color: @cyan;
+  color: @foreground;
   padding-right: 10px;
 }
 
 #sensors #memory {
-  color: @cyan;
+  color: @foreground;
   padding-right: 10px;
 }
 
+
 #sensors #temperature {
-  color: @cyan;
-  padding-right: 0px;
+  color: @foreground;
 }
 
 #sensors #temperature.critical {
   color: @red;
 }
 
-#sensors #disk {
-  color: @cyan;
+#disks #custom-storage {
+  color: @foreground;
   padding-right: 10px;
 }
 
-#workspaces button {
-  margin: 4px 2px;
-  padding: 2px 6px;
-}
-#workspaces button {
-  background: @background-darker;
-  color: @foreground;
+#disks #custom-storage.warning,
+#disks #custom-home-storage.warning {
+  color: @orange;
 }
 
-#workspaces button.active {
-  background: @cyan;
-  color: #000;
-}
-
-#workspaces button:hover {
-  background: @pink;
-}
-
-#system #clock,
-#network,
-#system #language,
-#custom-notification {
-  margin: 4px 6px;
+#disks #custom-storage.critical,
+#disks #custom-home-storage.critical {
+  color: @red;
 }
 
 #language {
-  color: @yellow;
-}
-
-#custom-notification {
-  color: @pink;
-  font-size: 10px;
-  padding: 0 10px;
-}
-
-#network {
-  font-size: 11px;
-  padding: 0 10px 0 7px;
   color: @green;
 }
 
-#system #language {
-  color: @purple;
-}
-
-#system #clock {
-  color: @purple;
+#network {
+  color: @foreground;
 }
 
 #pulseaudio {
@@ -132,9 +140,21 @@ tooltip {
 }
 
 #custom-updates {
-  color: @yellow;
+  color: @orange;
 }
 
-#custom-docker {
-  color: @cyan;
+#custom-updates.updated {
+  color: @blue;
+}
+
+#custom-notification {
+  color: @purple;
+}
+
+#custom-docker.running {
+  color: @blue;
+}
+
+#custom-docker.stopped {
+ color: @foreground;
 }

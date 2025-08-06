@@ -5,6 +5,7 @@ require("config.keymaps")
 
 -- Other stuff
 require("config.obsidian-workflow")
+require("config.substitute")
 
 -- Load core config
 require("core.dd-config")

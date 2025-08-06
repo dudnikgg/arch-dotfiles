@@ -1,3 +1,4 @@
+/* Dracula colors */
 @define-color background-alpha rgba(0, 0, 0, 0.6);
 @define-color background-darker rgba(30, 31, 41, 230);
 @define-color background #282a36;
@@ -11,3 +12,5 @@
 @define-color purple #bd93f9;
 @define-color red #ff5555;
 @define-color yellow #f1fa8c;
+
+/* Tokyonight colors */

@@ -1,5 +1,6 @@
 {
   "layer": "top",
+  "position": "top",
   "height": 40,
   "margin-top": 0,
   "margin-left": 0,
@@ -8,23 +9,51 @@
   "spacing": 0,
   "modules-left": [
     "hyprland/workspaces",
-    "tray",
-    "group/sensors",
+    "tray"
   ],
   "modules-center": [
-    "network",
-    "pulseaudio",
+    "group/disks",
     "custom/docker",
     "custom/updates",
-    "custom/notification",
+    "group/sensors"
   ],
   "modules-right": [
+    "network",
+    "pulseaudio",
     "hyprland/language",
-    "clock"
+    "clock",
+    "custom/notification"
   ],
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "show-special": true,
+    "special-visible-only": true,
+    "special-centered": true,
+    "format": "{icon}",
+    "format-icons": {
+      "special": "",
+      "2": "",
+      "1": "",
+      "urgent": "",
+      "focused": "",
+      "default": ""
+    }
+  },
+  "group/disks": {
+    "orientation": "inherit",
+    "modules": [
+      "custom/storage",
+      "custom/home-storage"
+    ]
+  },
   "group/sensors": {
     "orientation": "inherit",
-    "modules": ["custom/cpu-top", "disk", "memory", "temperature"]
+    "modules": [
+      "custom/cpu-top",
+      "memory",
+      "temperature"
+    ]
   },
   "tray": {
     "icon-size": 12,
@@ -45,6 +74,18 @@
     "exec": "~/.config/waybar/custom/docker.sh",
     "return-type": "json",
     "interval": 10
+  },
+  "custom/storage": {
+    "exec": "~/.config/waybar/custom/storage.sh",
+    "return-type": "json",
+    "interval": 30,
+    "tooltip": true
+  },
+  "custom/home-storage": {
+    "exec": "~/.config/waybar/custom/home-storage.sh",
+    "return-type": "json",
+    "interval": 30,
+    "tooltip": true
   },
   "custom/notification": {
     "tooltip": false,
@@ -80,7 +121,7 @@
     //"tooltip": false,
   },
   "network": {
-    "format-wifi": "󰖩",
+    "format-wifi": "󰤨: {bandwidthDownBits}",
     "format-disconnected": "󱚼",
     "tooltip-format-wifi": "SSID: {essid}\nStrenght: {signalStrength}%\nSpeed: {bandwidthDownBits}",
     "on-click": "iwgtk"
@@ -93,7 +134,9 @@
     },
     "scroll-step": 2,
     "on-click": "pavucontrol",
-    "ignored-sinks": ["Easy Effects Sink"]
+    "ignored-sinks": [
+      "Easy Effects Sink"
+    ]
   },
   "custom/cpu-top": {
     "exec": "~/.config/waybar/custom/cpu-top.sh",

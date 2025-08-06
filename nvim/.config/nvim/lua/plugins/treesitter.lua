@@ -65,7 +65,7 @@ return {
             node_decremental = "<S-TAB>",
           },
         },
-        ensure_installed = { "vue", "html", "css", "typescript", "javascript", "lua", "yaml" },
+        ensure_installed = { "vue", "html", "css", "typescript", "javascript", "lua", "yaml", "hyprlang" },
         highlight = { enable = true },
         indent = { enable = true },
         autotag = { enable = true },

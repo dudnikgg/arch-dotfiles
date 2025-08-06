@@ -1,0 +1,11 @@
+/* Tokyonight colors */
+@define-color background     #1a1b26;
+@define-color background-darker #16161e;
+@define-color foreground     #c0caf5;
+@define-color comment        #565f89;
+@define-color cyan           #73daca;
+@define-color green          #9ece6a;
+@define-color orange         #ff9e64;
+@define-color pink           #f7768e; /* using red for pink */
+@define-color purple         #bb9af7;
+@define-color yellow         #e0af68;
